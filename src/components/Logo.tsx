@@ -4,18 +4,19 @@ import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
-  /** "light" = for light backgrounds (nav). "gold" = transparent gold (dark footer). */
-  variant?: "light" | "gold";
+  /** "light" = full transparent logo. "gold" = full transparent logo. "mark" = compact icon. */
+  variant?: "light" | "gold" | "mark";
   width?: number;
   height?: number;
   className?: string;
   priority?: boolean;
 };
 
-// Tries the owner's real uploaded logo first; falls back to the built-in SVG.
+// Uses transparent SVG assets so the logo sits cleanly on the site background.
 const SOURCES: Record<string, { real: string; fallback: string }> = {
-  light: { real: "/logo.png", fallback: "/luna-clara-logo.svg" },
-  gold: { real: "/logo-gold.png", fallback: "/luna-clara-logo-gold.svg" },
+  light: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
+  gold: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
+  mark: { real: "/luna-clara-mark.svg", fallback: "/luna-clara-mark.svg" },
 };
 
 export default function Logo({

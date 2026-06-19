@@ -51,6 +51,86 @@ body {
   animation: shimmer 3s ease-in-out infinite;
 }
 
+@keyframes luna-scene-breathe {
+  0%, 100% {
+    transform:
+      perspective(1100px)
+      rotateX(var(--scene-tilt-x))
+      rotateY(var(--scene-tilt-y))
+      translate3d(0, 0, var(--scene-showcase));
+  }
+  50% {
+    transform:
+      perspective(1100px)
+      rotateX(var(--scene-tilt-x))
+      rotateY(var(--scene-tilt-y))
+      translate3d(0, -14px, var(--scene-showcase));
+  }
+}
+
+@keyframes luna-star-drift {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.7);
+  }
+  35% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-38px) scale(1.1);
+  }
+}
+
+.luna-scene-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 220ms ease-out;
+  animation: luna-scene-breathe 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+.luna-star-particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #C9A84C;
+  box-shadow: 0 0 16px rgba(201, 168, 76, 0.62);
+  animation: luna-star-drift 5.8s ease-in-out infinite;
+}
+
+.luna-delay-300 {
+  animation-delay: 300ms;
+}
+
+.luna-delay-700 {
+  animation-delay: 700ms;
+}
+
+.luna-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+.jewelry-focus-shell {
+  aspect-ratio: 4 / 5;
+  transform:
+    perspective(1000px)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 220ms ease-out;
+}
+
+.jewelry-focus-image {
+  position: absolute;
+  inset: 0;
+  transform: scale(var(--focus-scale));
+  transform-origin: var(--focus-origin);
+  transition: transform 420ms ease;
+}
+
 /* Gold glow on hover for cards */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
