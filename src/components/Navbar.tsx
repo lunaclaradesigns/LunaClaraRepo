@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
@@ -18,14 +18,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center flex-shrink-0">
-            <Image
-              src="/luna-clara-logo.svg"
-              alt="Luna Clara Designs"
-              width={110}
-              height={110}
-              className="object-contain"
-              priority
-            />
+            <Logo variant="light" width={110} height={110} priority />
           </Link>
 
           {/* Desktop Nav */}

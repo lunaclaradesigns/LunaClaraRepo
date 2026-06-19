@@ -1,13 +1,8 @@
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductImage from "@/components/ProductImage";
+import BannerImage from "@/components/BannerImage";
 import AddToCartButton from "@/components/AddToCartButton";
-
-const SAMPLE_PRODUCTS = [
-  { id: "p1", title: "Gold Crescent Earrings", price: 28, category: "individual" },
-  { id: "p2", title: "Pearl Charm Necklace", price: 36, category: "individual" },
-  { id: "p3", title: "Delicate Chain Bracelet", price: 24, category: "individual" },
-  { id: "p4", title: "Starburst Ring", price: 22, category: "individual" },
-];
+import { getFeaturedProducts } from "@/data/products";
 
 const OCCASIONS = [
   "Birthday",
@@ -21,11 +16,12 @@ const OCCASIONS = [
 ];
 
 export default function HomePage() {
+  const featured = getFeaturedProducts().slice(0, 4);
+
   return (
     <>
       {/* 1. HERO */}
-      <section className="min-h-[90vh] flex items-center bg-cream relative overflow-hidden">
-        {/* Subtle gold shimmer background dots */}
+      <section className="min-h-[88vh] flex items-center bg-cream relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -64,16 +60,17 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right: 3D placeholder (Spline will go here) */}
+            {/* Right: Hero feature image (falls back to 3D moon placeholder) */}
             <div className="order-1 md:order-2 flex justify-center">
-              <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-champagne via-blush/30 to-cream flex items-center justify-center shadow-xl border border-gold/20 relative">
-                {/* Moon/starburst placeholder — Spline embed replaces this */}
-                <div className="text-center">
-                  <div className="text-8xl md:text-9xl animate-shimmer">🌙</div>
-                  <p className="font-body text-xs text-soft-gray mt-3 tracking-wider uppercase">
-                    3D animation coming soon
-                  </p>
-                </div>
+              <div className="w-full max-w-md rounded-2xl overflow-hidden shadow-xl border border-gold/20">
+                <ProductImage
+                  src="/products/hero-feature.jpg"
+                  alt="Luna Clara jewelry collection"
+                  aspectRatio="1/1"
+                  label="Hero image coming soon"
+                  priority
+                  sizes="(max-width: 768px) 90vw, 40vw"
+                />
               </div>
             </div>
           </div>
@@ -112,21 +109,24 @@ export default function HomePage() {
                 title: "Individual Items",
                 desc: "Delicate earrings, necklaces, bracelets, and rings chosen for everyday elegance.",
                 href: "/collections/individual",
+                image: "/products/collection-individual.jpg",
               },
               {
                 title: "Medium Gift Box",
                 desc: "A beautifully curated gift box, elegantly presented and ready to give.",
                 href: "/collections/medium-box",
+                image: "/products/collection-medium-box.jpg",
               },
               {
                 title: "Large Gift Box",
                 desc: "Our premium gift experience — luxurious, hand-selected, unforgettable.",
                 href: "/collections/large-box",
+                image: "/products/collection-large-box.jpg",
               },
             ].map((col) => (
               <Link key={col.href} href={col.href} className="group block card-hover">
                 <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
-                  <PlaceholderImage aspectRatio="4/5" />
+                  <ProductImage src={col.image} alt={col.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
                   <div className="p-5 bg-warm-white">
                     <h3 className="font-heading text-2xl text-charcoal mb-2">{col.title}</h3>
                     <p className="font-body text-sm text-soft-gray leading-relaxed mb-4">{col.desc}</p>
@@ -149,26 +149,50 @@ export default function HomePage() {
             <h2 className="font-heading text-4xl md:text-5xl text-charcoal">Glow Picks</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {SAMPLE_PRODUCTS.map((product) => (
+            {featured.map((product) => (
               <div key={product.id} className="group card-hover">
-                <Link href={`/products/${product.id}`}>
+                <Link href={`/products/${product.slug}`}>
                   <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
-                    <PlaceholderImage aspectRatio="4/5" />
+                    <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
                   </div>
                 </Link>
-                <div className="pt-3 pb-4 bg-transparent">
-                  <Link href={`/products/${product.id}`}>
+                <div className="pt-3 pb-4">
+                  <Link href={`/products/${product.slug}`}>
                     <h3 className="font-body text-sm md:text-base text-charcoal mb-1 hover:text-gold transition-colors leading-snug">
                       {product.title}
                     </h3>
                   </Link>
-                  <p className="font-body text-gold text-sm mb-3">${product.price.toFixed(2)}</p>
-                  <AddToCartButton product={product} />
+                  <div className="flex items-baseline gap-2 mb-3">
+                    <p className="font-body text-gold text-sm">${product.price.toFixed(2)}</p>
+                    {product.compareAtPrice && (
+                      <p className="font-body text-soft-gray text-xs line-through">${product.compareAtPrice.toFixed(2)}</p>
+                    )}
+                  </div>
+                  <AddToCartButton product={{ id: product.id, title: product.title, price: product.price, imageUrl: product.image, category: product.category }} />
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </section>
+
+      {/* 4b. SHOWCASE BANNER */}
+      <section className="relative">
+        <BannerImage src="/products/hero-banner.jpg" alt="Luna Clara curated jewelry" heightClass="h-72 md:h-[420px]" priority>
+          <div className="absolute inset-0 bg-charcoal/20 flex items-center justify-center">
+            <div className="text-center px-6">
+              <p className="font-heading text-3xl md:text-5xl text-warm-white drop-shadow-lg mb-4">
+                Curated to Gift. Designed to Glow.
+              </p>
+              <Link
+                href="/collections/individual"
+                className="inline-block bg-warm-white/90 text-charcoal font-body text-sm uppercase tracking-widest px-8 py-4 hover:bg-gold hover:text-warm-white transition-colors"
+              >
+                Shop the Collection
+              </Link>
+            </div>
+          </div>
+        </BannerImage>
       </section>
 
       {/* 5. GIFT BOX SECTION */}
@@ -188,16 +212,18 @@ export default function HomePage() {
                 desc: "2–3 curated jewelry pieces + packaging + ribbon. Perfect for birthdays, Eid, and anniversaries.",
                 price: "From $65",
                 href: "/collections/medium-box",
+                image: "/products/collection-medium-box.jpg",
               },
               {
                 title: "Large Gift Box",
                 desc: "4–5 jewelry pieces + premium packaging + ribbon + gift card option. A luxurious experience.",
                 price: "From $110",
                 href: "/collections/large-box",
+                image: "/products/collection-large-box.jpg",
               },
             ].map((box) => (
               <div key={box.href} className="group card-hover bg-warm-white border border-gold/20">
-                <PlaceholderImage aspectRatio="16/9" />
+                <ProductImage src={box.image} alt={box.title} aspectRatio="16/9" sizes="(max-width: 768px) 100vw, 50vw" />
                 <div className="p-6">
                   <h3 className="font-heading text-2xl text-charcoal mb-2">{box.title}</h3>
                   <p className="font-body text-sm text-soft-gray leading-relaxed mb-3">{box.desc}</p>
@@ -237,7 +263,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-              <PlaceholderImage aspectRatio="4/5" className="max-w-md mx-auto md:mx-0" />
+              <div className="max-w-md mx-auto md:mx-0 overflow-hidden rounded-lg border border-gold/10">
+                <ProductImage src="/products/brand-story.jpg" alt="The Luna Clara story" aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 50vw" />
+              </div>
             </div>
             <div className="order-1 md:order-2 flex flex-col gap-5">
               <p className="font-body text-xs uppercase tracking-[0.25em] text-gold">Our Story</p>
@@ -248,7 +276,7 @@ export default function HomePage() {
                 moments.
               </p>
               <p className="font-body text-soft-gray leading-relaxed">
-                Whether it&apos;s a birthday, anniversary, Eid, or a simple "thinking of you" gift, Luna Clara is
+                Whether it&apos;s a birthday, anniversary, Eid, or a simple &ldquo;thinking of you&rdquo; gift, Luna Clara is
                 designed to make gifting feel easy, personal, and special.
               </p>
               <Link

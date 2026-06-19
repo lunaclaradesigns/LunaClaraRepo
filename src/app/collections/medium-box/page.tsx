@@ -1,12 +1,7 @@
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductImage from "@/components/ProductImage";
 import AddToCartButton from "@/components/AddToCartButton";
-
-const BOXES = [
-  { id: "mb1", title: "Blossom Gift Box", price: 65, category: "medium-box", desc: "A soft, romantic set — perfect for birthdays and Eid." },
-  { id: "mb2", title: "Moonlight Gift Box", price: 72, category: "medium-box", desc: "Golden accents and delicate pearls, elegantly wrapped." },
-  { id: "mb3", title: "Aurora Gift Box", price: 68, category: "medium-box", desc: "A curated trio of everyday-wear jewelry pieces." },
-];
+import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
   title: "Medium Gift Box — Luna Clara Designs",
@@ -14,6 +9,8 @@ export const metadata = {
 };
 
 export default function MediumBoxPage() {
+  const boxes = getProductsByCategory("medium-box");
+
   return (
     <>
       <div className="bg-champagne py-16 px-4 text-center border-b border-gold/10">
@@ -28,18 +25,18 @@ export default function MediumBoxPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BOXES.map((box) => (
-              <div key={box.id} className="group card-hover bg-warm-white border border-gold/10 group-hover:border-gold/30 transition-colors">
-                <Link href={`/products/${box.id}`}>
-                  <PlaceholderImage aspectRatio="4/5" />
+            {boxes.map((box) => (
+              <div key={box.id} className="group card-hover bg-warm-white border border-gold/10">
+                <Link href={`/products/${box.slug}`}>
+                  <ProductImage src={box.image} alt={box.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
                 </Link>
                 <div className="p-5">
-                  <Link href={`/products/${box.id}`}>
+                  <Link href={`/products/${box.slug}`}>
                     <h3 className="font-heading text-xl text-charcoal mb-2 hover:text-gold transition-colors">{box.title}</h3>
                   </Link>
-                  <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.desc}</p>
+                  <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.description}</p>
                   <p className="font-body text-gold text-base mb-4">${box.price.toFixed(2)}</p>
-                  <AddToCartButton product={box} />
+                  <AddToCartButton product={{ id: box.id, title: box.title, price: box.price, imageUrl: box.image, category: box.category }} />
                 </div>
               </div>
             ))}

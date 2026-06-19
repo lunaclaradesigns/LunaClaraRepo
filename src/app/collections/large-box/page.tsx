@@ -1,12 +1,7 @@
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductImage from "@/components/ProductImage";
 import AddToCartButton from "@/components/AddToCartButton";
-
-const BOXES = [
-  { id: "lb1", title: "Luna Luxe Box", price: 110, category: "large-box", desc: "Our most popular premium set — 5 pieces in a velvet-lined box." },
-  { id: "lb2", title: "Celestial Gift Box", price: 125, category: "large-box", desc: "Gold-tone statement pieces with a moonlight aesthetic." },
-  { id: "lb3", title: "Bridal Gift Box", price: 140, category: "large-box", desc: "Perfect for weddings, bridesmaids, and milestone gifts." },
-];
+import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
   title: "Large Gift Box — Luna Clara Designs",
@@ -14,6 +9,8 @@ export const metadata = {
 };
 
 export default function LargeBoxPage() {
+  const boxes = getProductsByCategory("large-box");
+
   return (
     <>
       <div className="bg-charcoal py-16 px-4 text-center">
@@ -28,18 +25,18 @@ export default function LargeBoxPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BOXES.map((box) => (
-              <div key={box.id} className="group card-hover bg-warm-white border border-gold/20 group-hover:border-gold/60 transition-colors">
-                <Link href={`/products/${box.id}`}>
-                  <PlaceholderImage aspectRatio="4/5" />
+            {boxes.map((box) => (
+              <div key={box.id} className="group card-hover bg-warm-white border border-gold/20">
+                <Link href={`/products/${box.slug}`}>
+                  <ProductImage src={box.image} alt={box.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
                 </Link>
                 <div className="p-5">
-                  <Link href={`/products/${box.id}`}>
+                  <Link href={`/products/${box.slug}`}>
                     <h3 className="font-heading text-xl text-charcoal mb-2 hover:text-gold transition-colors">{box.title}</h3>
                   </Link>
-                  <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.desc}</p>
+                  <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.description}</p>
                   <p className="font-body text-gold text-base mb-4">${box.price.toFixed(2)}</p>
-                  <AddToCartButton product={box} />
+                  <AddToCartButton product={{ id: box.id, title: box.title, price: box.price, imageUrl: box.image, category: box.category }} />
                 </div>
               </div>
             ))}

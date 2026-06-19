@@ -1,4 +1,4 @@
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductImage from "@/components/ProductImage";
 import Link from "next/link";
 
 export const metadata = {
@@ -41,8 +41,8 @@ export default function AboutPage() {
               Luna Clara — Made to glow with you.
             </p>
           </div>
-          <div>
-            <PlaceholderImage aspectRatio="4/5" />
+          <div className="overflow-hidden rounded-lg border border-gold/10">
+            <ProductImage src="/products/about.jpg" alt="The Luna Clara story" aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 50vw" />
           </div>
         </div>
       </section>

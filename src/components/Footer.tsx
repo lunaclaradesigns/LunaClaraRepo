@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -45,13 +45,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="mb-4">
-              <Image
-                src="/luna-clara-logo-gold.svg"
-                alt="Luna Clara Designs"
-                width={140}
-                height={140}
-                className="object-contain"
-              />
+              <Logo variant="gold" width={140} height={140} />
             </div>
             <p className="font-body text-white/50 text-sm leading-relaxed">
               Made to glow with you.<br />

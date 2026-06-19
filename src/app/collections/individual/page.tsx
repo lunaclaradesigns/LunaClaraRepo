@@ -1,17 +1,7 @@
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import ProductImage from "@/components/ProductImage";
 import AddToCartButton from "@/components/AddToCartButton";
-
-const PRODUCTS = [
-  { id: "e1", title: "Gold Crescent Earrings", price: 28, category: "individual" },
-  { id: "e2", title: "Pearl Drop Earrings", price: 32, category: "individual" },
-  { id: "n1", title: "Pearl Charm Necklace", price: 36, category: "individual" },
-  { id: "n2", title: "Layered Gold Necklace", price: 42, category: "individual" },
-  { id: "b1", title: "Delicate Chain Bracelet", price: 24, category: "individual" },
-  { id: "b2", title: "Gold Bangle", price: 26, category: "individual" },
-  { id: "r1", title: "Starburst Ring", price: 22, category: "individual" },
-  { id: "r2", title: "Twisted Band Ring", price: 19, category: "individual" },
-];
+import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
   title: "Individual Items — Luna Clara Designs",
@@ -19,6 +9,8 @@ export const metadata = {
 };
 
 export default function IndividualPage() {
+  const products = getProductsByCategory("individual");
+
   return (
     <>
       {/* Header */}
@@ -35,21 +27,26 @@ export default function IndividualPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-cream">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {PRODUCTS.map((product) => (
+            {products.map((product) => (
               <div key={product.id} className="group card-hover">
-                <Link href={`/products/${product.id}`}>
+                <Link href={`/products/${product.slug}`}>
                   <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
-                    <PlaceholderImage aspectRatio="4/5" />
+                    <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
                   </div>
                 </Link>
                 <div className="pt-3 pb-4">
-                  <Link href={`/products/${product.id}`}>
+                  <Link href={`/products/${product.slug}`}>
                     <h3 className="font-body text-sm md:text-base text-charcoal mb-1 hover:text-gold transition-colors leading-snug">
                       {product.title}
                     </h3>
                   </Link>
-                  <p className="font-body text-gold text-sm mb-3">${product.price.toFixed(2)}</p>
-                  <AddToCartButton product={product} />
+                  <div className="flex items-baseline gap-2 mb-3">
+                    <p className="font-body text-gold text-sm">${product.price.toFixed(2)}</p>
+                    {product.compareAtPrice && (
+                      <p className="font-body text-soft-gray text-xs line-through">${product.compareAtPrice.toFixed(2)}</p>
+                    )}
+                  </div>
+                  <AddToCartButton product={{ id: product.id, title: product.title, price: product.price, imageUrl: product.image, category: product.category }} />
                 </div>
               </div>
             ))}
