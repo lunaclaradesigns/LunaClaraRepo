@@ -1,4 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="50" fill="#FDF8F2"/>
-  <text x="50" y="58" font-size="42" text-anchor="middle" fill="#C9A84C">🌙</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#ffffff"/>
+
+  <!-- Crescent moon (open to the right, tilted) -->
+  <g transform="translate(200, 155)">
+    <!-- Outer circle of crescent -->
+    <path d="M 0,-80 A 80,80 0 1,1 0,80 A 55,55 0 1,0 0,-80 Z"
+      fill="none" stroke="url(#goldGrad)" stroke-width="0"
+      transform="rotate(-30)"/>
+    <!-- Crescent as filled shape -->
+    <path d="M 12,-78
+             A 80,80 0 1,1 -60,52
+             A 55,52 0 1,0 12,-78 Z"
+      fill="url(#goldGrad)" transform="rotate(15)"/>
+
+    <!-- 8-pointed starburst -->
+    <g transform="translate(-18, 8)">
+      <!-- Long arms -->
+      <line x1="0" y1="-52" x2="0" y2="52" stroke="url(#goldGrad)" stroke-width="5" stroke-linecap="round"/>
+      <line x1="-52" y1="0" x2="52" y2="0" stroke="url(#goldGrad)" stroke-width="5" stroke-linecap="round"/>
+      <!-- Diagonal arms (shorter) -->
+      <line x1="-28" y1="-28" x2="28" y2="28" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="28" y1="-28" x2="-28" y2="28" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- Center dot -->
+      <circle cx="0" cy="0" r="5" fill="url(#goldGrad)"/>
+    </g>
+
+    <!-- Small 4-pointed star top-right -->
+    <g transform="translate(52, -62)">
+      <line x1="0" y1="-10" x2="0" y2="10" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- LUNA CLARA text -->
+  <text x="200" y="258"
+    font-family="Palatino Linotype, Book Antiqua, Palatino, Georgia, serif"
+    font-size="42"
+    font-weight="700"
+    letter-spacing="10"
+    text-anchor="middle"
+    fill="url(#goldGrad)">LUNA CLARA</text>
+
+  <!-- Divider line with diamond -->
+  <line x1="82" y1="277" x2="170" y2="277" stroke="url(#goldGrad)" stroke-width="1.2"/>
+  <polygon points="200,270 208,277 200,284 192,277"
+    fill="url(#goldGrad)"/>
+  <line x1="230" y1="277" x2="318" y2="277" stroke="url(#goldGrad)" stroke-width="1.2"/>
+
+  <!-- PREMIUM GEM text -->
+  <text x="200" y="305"
+    font-family="Palatino Linotype, Book Antiqua, Palatino, Georgia, serif"
+    font-size="16"
+    font-weight="400"
+    letter-spacing="7"
+    text-anchor="middle"
+    fill="url(#goldGrad)">PREMIUM GEM</text>
+
+  <!-- DESIGNED IN USA text -->
+  <text x="200" y="328"
+    font-family="Palatino Linotype, Book Antiqua, Palatino, Georgia, serif"
+    font-size="13"
+    font-weight="400"
+    letter-spacing="6"
+    text-anchor="middle"
+    fill="url(#goldGrad)">DESIGNED IN USA</text>
+
+  <!-- Gold gradient definition -->
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#E8C97A"/>
+      <stop offset="40%"  stop-color="#C9A84C"/>
+      <stop offset="70%"  stop-color="#F0D98A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
 </svg>

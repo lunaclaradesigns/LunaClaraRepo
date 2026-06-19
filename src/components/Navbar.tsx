@@ -17,18 +17,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+          <Link href="/" className="flex items-center flex-shrink-0">
             <Image
               src="/luna-clara-logo.svg"
               alt="Luna Clara Designs"
-              width={48}
-              height={48}
-              className="rounded-full object-cover"
+              width={110}
+              height={110}
+              className="object-contain"
               priority
             />
-            <span className="font-heading text-xl text-charcoal tracking-wide hidden sm:block">
-              Luna Clara
-            </span>
           </Link>
 
           {/* Desktop Nav */}

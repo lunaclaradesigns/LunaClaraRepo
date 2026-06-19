@@ -44,15 +44,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="mb-4">
               <Image
-                src="/luna-clara-logo.svg"
+                src="/luna-clara-logo-gold.svg"
                 alt="Luna Clara Designs"
-                width={40}
-                height={40}
-                className="rounded-full object-cover"
+                width={140}
+                height={140}
+                className="object-contain"
               />
-              <span className="font-heading text-xl text-gold">Luna Clara</span>
             </div>
             <p className="font-body text-white/50 text-sm leading-relaxed">
               Made to glow with you.<br />
