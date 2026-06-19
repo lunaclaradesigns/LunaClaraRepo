@@ -85,6 +85,11 @@ shopify theme dev -s luna-clara-designs.myshopify.com --path "C:\Users\xikan\Rep
 | `assets/base.css` | Global CSS variables, body font, button overrides |
 | `sections/header-announcements.liquid` | Champagne background, gold text |
 | `sections/header.liquid` | Cream navbar, gold hover on nav links |
+| `blocks/_header-logo.liquid` | Luna Clara mark + wordmark fallback when no logo is uploaded |
+| `sections/header-group.json` | Luna Clara announcement text, simplified header controls |
+| `sections/luna-clara-home.liquid` | Custom luxury Luna Clara homepage section |
+| `templates/index.json` | Replaced default starter homepage with Luna Clara homepage |
+| `assets/luna-clara-*.png/svg` | Homepage and logo visual assets |
 
 ---
 

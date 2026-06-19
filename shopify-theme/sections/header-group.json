@@ -17,12 +17,12 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "Uplevel your office with new decor",
+            "text": "Free local delivery available · Birthday · Anniversary · Eid · Mother's Day · Weddings · sales@lunaclaradesigns.com",
             "link": "shopify://collections/all",
             "font": "var(--font-primary--family)",
-            "font_size": "var(--font-size--body-md)",
-            "letter_spacing": "normal",
-            "case": "none"
+            "font_size": "0.78rem",
+            "letter_spacing": "0.18em",
+            "case": "uppercase"
           },
           "blocks": {}
         }
@@ -81,12 +81,12 @@
         "menu_position": "center",
         "menu_row": "top",
         "customer_account_menu": "customer-account-main-menu",
-        "show_search": true,
+        "show_search": false,
         "search_position": "right",
         "search_row": "top",
-        "show_country": true,
+        "show_country": false,
         "country_selector_style": true,
-        "show_language": true,
+        "show_language": false,
         "localization_font": "body",
         "localization_font_size": "0.875rem",
         "localization_position": "right",
@@ -104,7 +104,7 @@
         "background_color_top": "{{ settings.color_palette.background }}",
         "text_color_transparent_home": "{{ settings.color_palette.background }}",
         "bubble_style": "default",
-        "enable_transparent_header_home": true,
+        "enable_transparent_header_home": false,
         "home_inverse_logo": false,
         "enable_transparent_header_product": false,
         "product_inverse_logo": false,
