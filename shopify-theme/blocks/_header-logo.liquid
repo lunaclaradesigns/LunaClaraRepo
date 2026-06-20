@@ -77,12 +77,14 @@
         style: logo_style
       %}
     {% else %}
-      <span class="header-logo__fallback-mark" aria-hidden="true">
-        <img src="{{ 'luna-clara-mark.svg' | asset_url }}" alt="" width="42" height="42" loading="eager">
-      </span>
-      <span class="header-logo__fallback-text">
-        <span>Luna Clara</span>
-        <small>Designs</small>
+      <span class="header-logo__wordmark">
+        <img
+          src="{{ 'luna-clara-wordmark-gold.svg' | asset_url }}"
+          alt="{{ alt_text_fallback }}"
+          width="300"
+          height="70"
+          loading="eager"
+        >
       </span>
     {% endif %}
   </span>
@@ -167,49 +169,20 @@
     gap: 0.75rem;
   }
 
-  .header-logo__fallback-mark {
+  .header-logo__wordmark {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 999px;
-    background: rgba(253, 248, 242, 0.82);
-    box-shadow: inset 0 0 0 1px rgba(201, 168, 76, 0.24);
   }
 
-  .header-logo__fallback-mark img {
-    width: 40px;
-    height: 40px;
+  .header-logo__wordmark img {
+    height: 38px;
+    width: auto;
     object-fit: contain;
   }
 
-  .header-logo__fallback-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    line-height: 1;
-  }
-
-  .header-logo__fallback-text span {
-    color: #C9A84C;
-    font-family: var(--font-heading--family, Georgia, serif);
-    font-size: clamp(1.1rem, 2vw, 1.45rem);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .header-logo__fallback-text small {
-    color: #8A8A8A;
-    font-family: var(--font-body--family, sans-serif);
-    font-size: 0.56rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-  }
-
   @media screen and (max-width: 749px) {
-    .header-logo__fallback-text {
-      display: none;
+    .header-logo__wordmark img {
+      height: 30px;
     }
   }
 {% endstylesheet %}
