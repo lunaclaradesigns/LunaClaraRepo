@@ -182,14 +182,14 @@ export default function HomePage() {
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
             {[
               {
-                title: "Medium Gift Box",
+                title: "Signature Gift Box",
                 desc: "Two to three curated jewelry pieces with packaging and ribbon. Perfect for birthdays, Eid, and anniversaries.",
                 price: "From $65",
                 href: "/collections/medium-box",
                 image: "/products/hero-feature.jpg",
               },
               {
-                title: "Large Gift Box",
+                title: "Luxury Gift Box",
                 desc: "Four to five jewelry pieces with premium packaging, ribbon, and a gift card option.",
                 price: "From $110",
                 href: "/collections/large-box",

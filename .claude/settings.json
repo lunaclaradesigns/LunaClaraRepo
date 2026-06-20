@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(C:\\Users\\xikan\\AppData\\*)",
+      "Read(C:\\Users\\xikan\\Documents\\*)",
+      "Read(C:\\Users\\xikan\\Desktop\\*)",
+      "Read(C:\\Users\\xikan\\Downloads\\*)",
+      "Read(C:\\Users\\xikan\\Pictures\\*)",
+      "Read(C:\\Users\\xikan\\Videos\\*)",
+      "Read(C:\\Users\\xikan\\Music\\*)",
+      "Read(C:\\Users\\xikan\\OneDrive\\*)",
+      "Edit(C:\\Users\\xikan\\AppData\\*)",
+      "Edit(C:\\Users\\xikan\\Documents\\*)",
+      "Edit(C:\\Users\\xikan\\Desktop\\*)",
+      "Edit(C:\\Users\\xikan\\Downloads\\*)",
+      "Edit(C:\\Users\\xikan\\Pictures\\*)",
+      "Edit(C:\\Users\\xikan\\Videos\\*)",
+      "Edit(C:\\Users\\xikan\\Music\\*)",
+      "Edit(C:\\Users\\xikan\\OneDrive\\*)",
+      "Write(C:\\Users\\xikan\\AppData\\*)",
+      "Write(C:\\Users\\xikan\\Documents\\*)",
+      "Write(C:\\Users\\xikan\\Desktop\\*)",
+      "Write(C:\\Users\\xikan\\Downloads\\*)",
+      "Write(C:\\Users\\xikan\\Pictures\\*)",
+      "Write(C:\\Users\\xikan\\Videos\\*)",
+      "Write(C:\\Users\\xikan\\Music\\*)",
+      "Write(C:\\Users\\xikan\\OneDrive\\*)"
+    ]
+  }
+}

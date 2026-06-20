@@ -89,7 +89,7 @@ export default function Navbar() {
               {shopOpen && (
                 <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
                   <Link href="/collections/individual" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
-                    Individual Items
+                    Luna Finds
                   </Link>
                   <Link href="/collections/individual" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     View All
@@ -125,10 +125,10 @@ export default function Navbar() {
               {giftOpen && (
                 <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
                   <Link href="/collections/medium-box" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
-                    Medium Gift Box
+                    Signature Gift Box
                   </Link>
                   <Link href="/collections/large-box" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
-                    Large Gift Box
+                    Luxury Gift Box
                   </Link>
                 </div>
               )}
@@ -185,16 +185,16 @@ export default function Navbar() {
             <p className="text-xs uppercase tracking-widest text-soft-gray mb-3 font-body">Shop</p>
             <Link href="/collections/individual" onClick={() => setMenuOpen(false)}
               className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
-              Individual Items
+              Luna Finds
             </Link>
             <p className="text-xs uppercase tracking-widest text-soft-gray mt-4 mb-3 font-body">Gift Boxes</p>
             <Link href="/collections/medium-box" onClick={() => setMenuOpen(false)}
               className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
-              Medium Gift Box
+              Signature Gift Box
             </Link>
             <Link href="/collections/large-box" onClick={() => setMenuOpen(false)}
               className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
-              Large Gift Box
+              Luxury Gift Box
             </Link>
             <div className="border-t border-gold/20 mt-4 pt-4 flex flex-col gap-1">
               <Link href="/about" onClick={() => setMenuOpen(false)}

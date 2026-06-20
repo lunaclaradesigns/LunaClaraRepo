@@ -15,7 +15,7 @@ type Props = {
 // Uses transparent SVG assets so the logo sits cleanly on the site background.
 const SOURCES: Record<string, { real: string; fallback: string }> = {
   light: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
-  gold: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
+  gold: { real: "/brand/embossed-logo.png", fallback: "/luna-clara-logo-gold.svg" },
   mark: { real: "/luna-clara-mark.svg", fallback: "/luna-clara-mark.svg" },
   landscape: {
     real: "/brand/luna-clara-landscape-logo.png",

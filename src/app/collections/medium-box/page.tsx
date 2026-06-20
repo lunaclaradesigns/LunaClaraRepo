@@ -4,7 +4,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
-  title: "Medium Gift Box — Luna Clara Designs",
+  title: "Signature Gift Box — Luna Clara Designs",
   description: "Beautifully curated gift boxes with 2–3 jewelry pieces, elegantly presented and ready to give.",
 };
 
@@ -15,7 +15,7 @@ export default function MediumBoxPage() {
     <>
       <div className="bg-champagne py-16 px-4 text-center border-b border-gold/10">
         <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Gift Boxes</p>
-        <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">Medium Gift Box</h1>
+        <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">Signature Gift Box</h1>
         <p className="font-body text-soft-gray max-w-md mx-auto leading-relaxed">
           A beautifully curated gift box with 2–3 jewelry pieces, elegantly presented and ready to gift.
           Perfect for birthdays, Eid, and anniversaries.
@@ -45,7 +45,7 @@ export default function MediumBoxPage() {
           <div className="mt-12 p-6 bg-champagne border border-gold/20 text-center">
             <p className="font-heading text-xl text-charcoal mb-2">What&apos;s Inside?</p>
             <p className="font-body text-sm text-soft-gray leading-relaxed max-w-lg mx-auto">
-              Each Medium Gift Box includes 2–3 hand-selected jewelry pieces, elegant packaging, a satin ribbon,
+              Each Signature Gift Box includes 2–3 hand-selected jewelry pieces, elegant packaging, a satin ribbon,
               and a gift-ready presentation. No wrapping needed.
             </p>
           </div>

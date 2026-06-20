@@ -60,6 +60,40 @@ body {
   animation: blink 1s step-end infinite;
 }
 
+/* Graceful entrance for hero copy (drop-in / rise-up) */
+@keyframes luna-rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.luna-rise-in {
+  animation: luna-rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.luna-rise-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.luna-rise-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.luna-rise-delay-3 {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luna-rise-in {
+    animation: none;
+  }
+}
+
 @keyframes luna-scene-breathe {
   0%, 100% {
     transform:

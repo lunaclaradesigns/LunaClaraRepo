@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
@@ -106,13 +105,15 @@ export default function JewelryFocusShowcase() {
       onPointerLeave={resetTilt}
     >
       <div className="jewelry-focus-image">
-        <Image
-          src="/products/luna-clara-jewelry-model.png"
-          alt="Luna Clara model wearing gold earring, necklace, bracelet, and ring"
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
-          priority
+        <video
+          src="/products/ad-3.mp4"
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Luna Clara model wearing earrings, necklace, bracelet, and ring"
         />
       </div>
 

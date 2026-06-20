@@ -79,7 +79,7 @@ export default function AboutPage() {
             href="/collections/individual"
             className="bg-gold px-8 py-4 font-body text-sm uppercase tracking-widest text-warm-white transition-colors hover:bg-gold-light hover:text-charcoal"
           >
-            Shop Individual Items
+            Shop Luna Finds
           </Link>
           <Link
             href="/collections/medium-box"

@@ -4,7 +4,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
-  title: "Individual Items — Luna Clara Designs",
+  title: "Luna Finds — Luna Clara Designs",
   description: "Delicate earrings, necklaces, bracelets, and rings — each piece chosen for everyday elegance.",
 };
 
@@ -16,7 +16,7 @@ export default function IndividualPage() {
       {/* Header */}
       <div className="bg-champagne py-16 px-4 text-center border-b border-gold/10">
         <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Shop</p>
-        <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">Individual Items</h1>
+        <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">Luna Finds</h1>
         <p className="font-body text-soft-gray max-w-md mx-auto leading-relaxed">
           Delicate earrings, necklaces, bracelets, and rings — each piece chosen for everyday elegance
           and effortless gifting.

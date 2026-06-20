@@ -45,7 +45,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="mb-4">
-              <Logo variant="gold" width={140} height={140} />
+              <Logo variant="gold" width={220} height={220} className="h-auto w-44 sm:w-52" />
             </div>
             <p className="font-body text-white/50 text-sm leading-relaxed">
               Made to glow with you.<br />
@@ -59,9 +59,9 @@ export default function Footer() {
             <h3 className="font-body text-xs uppercase tracking-widest text-gold mb-4">Shop</h3>
             <ul className="space-y-2.5">
               {[
-                { label: "Individual Items", href: "/collections/individual" },
-                { label: "Medium Gift Box", href: "/collections/medium-box" },
-                { label: "Large Gift Box", href: "/collections/large-box" },
+                { label: "Luna Finds", href: "/collections/individual" },
+                { label: "Signature Gift Box", href: "/collections/medium-box" },
+                { label: "Luxury Gift Box", href: "/collections/large-box" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="font-body text-sm text-white/60 hover:text-gold transition-colors">

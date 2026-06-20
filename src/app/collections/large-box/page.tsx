@@ -4,7 +4,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { getProductsByCategory } from "@/data/products";
 
 export const metadata = {
-  title: "Large Gift Box — Luna Clara Designs",
+  title: "Luxury Gift Box — Luna Clara Designs",
   description: "Our premium gift experience with 4–5 jewelry pieces, luxury packaging, and finishing touches.",
 };
 
@@ -15,7 +15,7 @@ export default function LargeBoxPage() {
     <>
       <div className="bg-charcoal py-16 px-4 text-center">
         <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Premium Collection</p>
-        <h1 className="font-heading text-4xl md:text-5xl text-warm-white mb-4">Large Gift Box</h1>
+        <h1 className="font-heading text-4xl md:text-5xl text-warm-white mb-4">Luxury Gift Box</h1>
         <p className="font-body text-white/60 max-w-md mx-auto leading-relaxed">
           Our premium gift experience — a luxurious box filled with hand-selected jewelry pieces
           and finishing touches that make gifting truly unforgettable.

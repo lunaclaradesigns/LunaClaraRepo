@@ -34,9 +34,9 @@ Recommended: square-ish or portrait photos, at least 800×1000px, .jpg or .png.
 |--------------------------------------------|--------------------------------------------|
 | `hero-feature.jpg`                         | Big image on the homepage hero (top right) |
 | `hero-banner.jpg`                          | Wide full-width banner band (homepage)     |
-| `collection-individual.jpg`                | "Individual Items" collection card         |
-| `collection-medium-box.jpg`                | "Medium Gift Box" collection card          |
-| `collection-large-box.jpg`                 | "Large Gift Box" collection card           |
+| `collection-individual.jpg`                | "Luna Finds" collection card         |
+| `collection-medium-box.jpg`                | "Signature Gift Box" collection card          |
+| `collection-large-box.jpg`                 | "Luxury Gift Box" collection card           |
 | `brand-story.jpg`                          | "More Than Jewelry" story section          |
 | `about.jpg`                                | About page photo                           |
 
