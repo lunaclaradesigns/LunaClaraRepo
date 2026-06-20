@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
-  /** "light" = full transparent logo. "gold" = full transparent logo. "mark" = compact icon. */
-  variant?: "light" | "gold" | "mark";
+  /** "landscape" = supplied wide logo. "mark" = compact icon. */
+  variant?: "light" | "gold" | "mark" | "landscape";
   width?: number;
   height?: number;
   className?: string;
@@ -17,6 +17,10 @@ const SOURCES: Record<string, { real: string; fallback: string }> = {
   light: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
   gold: { real: "/luna-clara-logo-gold.svg", fallback: "/luna-clara-logo-gold.svg" },
   mark: { real: "/luna-clara-mark.svg", fallback: "/luna-clara-mark.svg" },
+  landscape: {
+    real: "/brand/luna-clara-landscape-logo.png",
+    fallback: "/luna-clara-logo-gold.svg",
+  },
 };
 
 export default function Logo({

@@ -51,6 +51,15 @@ body {
   animation: shimmer 3s ease-in-out infinite;
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
 @keyframes luna-scene-breathe {
   0%, 100% {
     transform:
@@ -129,6 +138,56 @@ body {
   transform: scale(var(--focus-scale));
   transform-origin: var(--focus-origin);
   transition: transform 420ms ease;
+}
+
+.luna-motion-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  background: #F7E7CE;
+  box-shadow: 0 34px 80px rgba(201, 168, 76, 0.18);
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+  will-change: transform;
+}
+
+.luna-motion-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.36), transparent 32%),
+    radial-gradient(circle at var(--focus-x) var(--focus-y), rgba(201, 168, 76, 0.16), transparent 24%);
+  mix-blend-mode: screen;
+}
+
+.luna-motion-image {
+  transform: scale(1.16);
+  transform-origin: var(--focus-origin);
+  transition: transform 420ms ease;
+  will-change: transform;
+}
+
+.luna-motion-video {
+  position: relative;
+  z-index: 0;
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  transform:
+    translate3d(var(--media-x), var(--media-y), 42px)
+    scale(var(--media-scale));
+  transform-origin: var(--focus-origin);
+  transition: transform 120ms ease-out, filter 160ms ease-out;
+  filter: saturate(1.04) contrast(1.02) brightness(1.02);
+  will-change: transform;
 }
 
 /* Gold glow on hover for cards */

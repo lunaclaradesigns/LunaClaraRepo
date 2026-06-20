@@ -2,7 +2,7 @@ import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import BannerImage from "@/components/BannerImage";
 import AddToCartButton from "@/components/AddToCartButton";
-import LunaClaraSplineHero from "@/components/LunaClaraSplineHero";
+import LunaClaraMotionHero from "@/components/LunaClaraMotionHero";
 import { getFeaturedProducts } from "@/data/products";
 
 const OCCASIONS = [
@@ -53,65 +53,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[88vh] overflow-hidden bg-cream">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 16% 24%, rgba(242,181,192,0.2) 0%, transparent 32%), radial-gradient(circle at 86% 18%, rgba(201,168,76,0.16) 0%, transparent 38%)",
-          }}
-        />
-
-        <div className="relative mx-auto grid min-h-[88vh] w-full max-w-7xl grid-cols-1 items-center gap-8 px-4 py-12 sm:px-6 md:grid-cols-[0.92fr_1.08fr] md:py-0 lg:px-8">
-          <div className="z-10 flex flex-col gap-6 text-center md:text-left">
-            <p className="font-body text-xs uppercase tracking-[0.25em] text-gold">
-              Premium Gem · Designed in USA
-            </p>
-            <div className="flex flex-col gap-4">
-              <h1 className="font-heading text-5xl leading-[0.92] text-charcoal sm:text-6xl lg:text-7xl">
-                Luna Clara Designs
-              </h1>
-              <p className="font-heading text-3xl italic leading-tight text-gold sm:text-4xl">
-                Made to glow with you.
-              </p>
-            </div>
-            <p className="mx-auto max-w-lg font-body text-base leading-relaxed text-soft-gray md:mx-0 md:text-lg">
-              Curated jewelry and gift-ready pieces with a celestial finish, polished packaging,
-              and just enough sparkle for the moments people remember.
-            </p>
-            <div className="flex flex-col justify-center gap-3 pt-1 sm:flex-row md:justify-start">
-              <Link
-                href="/collections/individual"
-                className="bg-gold px-8 py-4 text-center font-body text-sm uppercase tracking-widest text-warm-white transition-colors hover:bg-gold-light hover:text-charcoal"
-              >
-                Shop Jewelry
-              </Link>
-              <Link
-                href="/collections/medium-box"
-                className="border border-gold px-8 py-4 text-center font-body text-sm uppercase tracking-widest text-gold transition-colors hover:bg-gold hover:text-warm-white"
-              >
-                Explore Gift Boxes
-              </Link>
-            </div>
-            <div className="grid grid-cols-3 gap-3 pt-5 text-left">
-              {[
-                ["Gift-ready", "Boxes, ribbon, and polish"],
-                ["Curated", "Selected for glow"],
-                ["Personal", "For every celebration"],
-              ].map(([label, desc]) => (
-                <div key={label} className="border-l border-gold/30 pl-3">
-                  <p className="font-body text-xs uppercase tracking-widest text-gold">{label}</p>
-                  <p className="mt-1 font-body text-xs leading-snug text-soft-gray">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="relative -mx-4 min-h-[360px] sm:mx-0 md:min-h-[620px]">
-            <LunaClaraSplineHero />
-          </div>
-        </div>
-      </section>
+      <LunaClaraMotionHero />
 
       <section className="overflow-hidden bg-charcoal py-3">
         <div className="flex whitespace-nowrap">

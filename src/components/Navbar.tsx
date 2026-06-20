@@ -1,34 +1,62 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
+  const navRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
   const { totalItems, openCart } = useCart();
 
+  useEffect(() => {
+    function closeMenus(event: MouseEvent) {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setShopOpen(false);
+        setGiftOpen(false);
+        setMenuOpen(false);
+      }
+    }
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setShopOpen(false);
+        setGiftOpen(false);
+        setMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", closeMenus);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", closeMenus);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  function closeDesktopMenus() {
+    setShopOpen(false);
+    setGiftOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-warm-white border-b border-gold/20 shadow-sm">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between md:h-[72px]">
 
           {/* Logo */}
           <Link href="/" className="flex flex-shrink-0 items-center gap-3" aria-label="Luna Clara Designs home">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream/70 ring-1 ring-gold/20 md:h-14 md:w-14">
-              <Logo variant="mark" width={46} height={46} priority className="h-10 w-10 md:h-11 md:w-11" />
-            </span>
-            <span className="hidden leading-none sm:block">
-              <span className="block font-heading text-xl tracking-[0.18em] text-gold md:text-2xl">
-                Luna Clara
-              </span>
-              <span className="mt-1 block font-body text-[0.55rem] uppercase tracking-[0.28em] text-soft-gray">
-                Designs
-              </span>
-            </span>
+            <Logo
+              variant="landscape"
+              width={210}
+              height={70}
+              priority
+              className="h-10 w-auto sm:h-11 md:h-14"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -37,21 +65,33 @@ export default function Navbar() {
             {/* Shop dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setShopOpen(true)}
+              onMouseEnter={() => {
+                setShopOpen(true);
+                setGiftOpen(false);
+              }}
               onMouseLeave={() => setShopOpen(false)}
             >
-              <button className="flex items-center gap-1 text-charcoal hover:text-gold transition-colors py-2">
+              <button
+                type="button"
+                aria-expanded={shopOpen}
+                aria-haspopup="menu"
+                onClick={() => {
+                  setShopOpen((open) => !open);
+                  setGiftOpen(false);
+                }}
+                className="flex items-center gap-1 text-charcoal hover:text-gold transition-colors py-2"
+              >
                 Shop
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {shopOpen && (
-                <div className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
-                  <Link href="/collections/individual" className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
+                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
+                  <Link href="/collections/individual" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     Individual Items
                   </Link>
-                  <Link href="/collections/individual" className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
+                  <Link href="/collections/individual" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     View All
                   </Link>
                 </div>
@@ -61,21 +101,33 @@ export default function Navbar() {
             {/* Gift Boxes dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setGiftOpen(true)}
+              onMouseEnter={() => {
+                setGiftOpen(true);
+                setShopOpen(false);
+              }}
               onMouseLeave={() => setGiftOpen(false)}
             >
-              <button className="flex items-center gap-1 text-charcoal hover:text-gold transition-colors py-2">
+              <button
+                type="button"
+                aria-expanded={giftOpen}
+                aria-haspopup="menu"
+                onClick={() => {
+                  setGiftOpen((open) => !open);
+                  setShopOpen(false);
+                }}
+                className="flex items-center gap-1 text-charcoal hover:text-gold transition-colors py-2"
+              >
                 Gift Boxes
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {giftOpen && (
-                <div className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
-                  <Link href="/collections/medium-box" className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
+                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
+                  <Link href="/collections/medium-box" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     Medium Gift Box
                   </Link>
-                  <Link href="/collections/large-box" className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
+                  <Link href="/collections/large-box" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     Large Gift Box
                   </Link>
                 </div>
