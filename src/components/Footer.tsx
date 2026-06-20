@@ -46,7 +46,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="mb-4">
-              <Logo variant="light" width={220} height={220} className="h-auto w-44 sm:w-52" />
+              <Logo variant="footer" width={220} height={220} className="h-auto w-44 sm:w-52" />
             </div>
             <p className="font-body text-white/50 text-sm leading-relaxed">
               Made to glow with you.<br />
