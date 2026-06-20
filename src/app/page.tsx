@@ -77,7 +77,7 @@ export default function HomePage() {
           <div className="mb-12 flex flex-col gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
             <div>
               <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Shop the mood</p>
-              <h2 className="font-heading text-4xl text-charcoal md:text-5xl">Jewelry for the moment</h2>
+              <h2 className="font-display text-4xl text-charcoal md:text-5xl">Jewelry for the moment</h2>
             </div>
             <p className="mx-auto max-w-md font-body text-sm leading-relaxed text-soft-gray md:mx-0">
               Inspired by boutique jewelry houses: product-first, refined, and ready for gifting.
@@ -112,7 +112,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Handpicked for you</p>
-            <h2 className="font-heading text-4xl text-charcoal md:text-5xl">Glow Picks</h2>
+            <h2 className="font-display text-4xl text-charcoal md:text-5xl">Glow Picks</h2>
           </div>
           <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
             {featured.map((product) => (
@@ -156,7 +156,7 @@ export default function HomePage() {
         <BannerImage src="/products/hero-banner.jpg" alt="Luna Clara curated jewelry" heightClass="h-72 md:h-[420px]" priority>
           <div className="absolute inset-0 flex items-center justify-center bg-charcoal/20">
             <div className="px-6 text-center">
-              <p className="mb-4 font-heading text-3xl text-warm-white drop-shadow-lg md:text-5xl">
+              <p className="mb-4 font-display text-3xl text-warm-white drop-shadow-lg md:text-5xl">
                 Curated to Gift. Designed to Glow.
               </p>
               <Link
@@ -174,7 +174,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Gift-ready</p>
-            <h2 className="font-heading text-4xl text-charcoal md:text-5xl">The Perfect Gift, Ready to Give</h2>
+            <h2 className="font-display text-4xl text-charcoal md:text-5xl">The Perfect Gift, Ready to Give</h2>
             <p className="mx-auto mt-3 max-w-lg font-body leading-relaxed text-soft-gray">
               Every Luna Clara gift box is beautifully presented and ready for the celebration.
             </p>
@@ -222,7 +222,7 @@ export default function HomePage() {
 
       <section className="bg-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-8 font-heading text-3xl text-charcoal md:text-4xl">A Gift for Every Moment</h2>
+          <h2 className="mb-8 font-display text-3xl text-charcoal md:text-4xl">A Gift for Every Moment</h2>
           <div className="flex flex-wrap justify-center gap-3">
             {OCCASIONS.map((occasion) => (
               <span
@@ -250,7 +250,7 @@ export default function HomePage() {
           </div>
           <div className="order-1 flex flex-col gap-5 md:order-2">
             <p className="font-body text-xs uppercase tracking-[0.25em] text-gold">Our Story</p>
-            <h2 className="font-heading text-4xl text-charcoal md:text-5xl">More Than Jewelry</h2>
+            <h2 className="font-display text-4xl text-charcoal md:text-5xl">More Than Jewelry</h2>
             <p className="font-body leading-relaxed text-soft-gray">
               At Luna Clara, jewelry is part of the whole gesture: the piece, the packaging, the ribbon,
               and the feeling of opening something chosen with care.

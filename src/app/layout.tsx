@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Playfair_Display, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Playfair_Display, DM_Sans, Cinzel } from "next/font/google";
 import "./globals.css";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
@@ -27,6 +27,12 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500"],
 });
 
+const cinzel = Cinzel({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 export const metadata: Metadata = {
   title: "Luna Clara Designs — Made to Glow With You",
   description:
@@ -40,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable}`}
+      className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable} ${cinzel.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal">
         <CartProvider>

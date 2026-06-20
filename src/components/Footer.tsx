@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import PaymentMethods from "@/components/PaymentMethods";
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
       {/* Contact / Social strip */}
       <div className="border-b border-white/10 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="font-heading text-3xl md:text-4xl text-gold mb-3">
+          <h2 className="font-display text-3xl md:text-4xl text-gold mb-3">
             We&apos;d love to hear from you
           </h2>
           <p className="font-body text-white/60 mb-6 text-sm">
@@ -45,7 +46,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="mb-4">
-              <Logo variant="gold" width={220} height={220} className="h-auto w-44 sm:w-52" />
+              <Logo variant="light" width={220} height={220} className="h-auto w-44 sm:w-52" />
             </div>
             <p className="font-body text-white/50 text-sm leading-relaxed">
               Made to glow with you.<br />
@@ -121,13 +122,7 @@ export default function Footer() {
           <p className="font-body text-xs text-white/40">
             © 2025 Luna Clara Designs. All rights reserved. Illinois, USA.
           </p>
-          <div className="flex items-center gap-2">
-            {["Visa", "MC", "AmEx", "Apple Pay", "Google Pay"].map((p) => (
-              <span key={p} className="text-xs font-body text-white/30 bg-white/5 border border-white/10 px-2 py-0.5 rounded">
-                {p}
-              </span>
-            ))}
-          </div>
+          <PaymentMethods />
         </div>
       </div>
     </footer>

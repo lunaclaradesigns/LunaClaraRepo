@@ -13,9 +13,17 @@
   --color-placeholder-bg: #F9E8E0;
 
   /* Brand Fonts */
+  --font-display: var(--font-cinzel);
   --font-heading: var(--font-cormorant);
   --font-subheading: var(--font-playfair);
   --font-body: var(--font-dm-sans);
+}
+
+/* Luxury engraved display type — reserved for the largest brand statements */
+.font-display {
+  font-family: var(--font-cinzel), 'Cormorant Garamond', serif;
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
 
 :root {
