@@ -3,25 +3,24 @@
   if featured_collection == blank
     assign featured_collection = collections.all
   endif
+  assign shop_url = section.settings.primary_link | default: routes.all_products_collection_url
+  assign gift_url = section.settings.secondary_link | default: routes.all_products_collection_url
 %}
 
 <section class="lc-home" data-lc-home>
+  {% comment %} ---------- HERO ---------- {% endcomment %}
   <div class="lc-hero">
     <div class="lc-hero__copy">
       <p class="lc-eyebrow">Premium Gem · Designed in USA</p>
-      <h1>Luna Clara Designs</h1>
-      <p class="lc-hero__tagline">Made to glow with you.</p>
+      <h1>Jewelry that moves with your moment.</h1>
+      <p class="lc-hero__tagline">Follow the glow from piece to piece.</p>
       <p class="lc-hero__body">
-        Curated jewelry and gift-ready pieces with a celestial finish, polished packaging,
-        and just enough sparkle for the moments people remember.
+        Move your cursor down to follow the Luna Clara story — earring, necklace,
+        bracelet, and ring. Move back up to reverse the sequence.
       </p>
       <div class="lc-actions">
-        <a href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}" class="lc-button">
-          {{ section.settings.primary_label }}
-        </a>
-        <a href="{{ section.settings.secondary_link | default: routes.collections_url }}" class="lc-button lc-button--secondary">
-          {{ section.settings.secondary_label }}
-        </a>
+        <a href="{{ shop_url }}" class="lc-button">{{ section.settings.primary_label }}</a>
+        <a href="{{ gift_url }}" class="lc-button lc-button--secondary">{{ section.settings.secondary_label }}</a>
       </div>
       <div class="lc-proof">
         <span><strong>Gift-ready</strong> Boxes, ribbon, and polish</span>
@@ -30,20 +29,24 @@
       </div>
     </div>
 
-    <div class="lc-hero__visual" data-lc-tilt>
-      <img
-        src="{{ 'luna-clara-spline-fallback.png' | asset_url }}"
-        alt="Gold crescent moon, starburst, and jewelry pieces for Luna Clara Designs"
-        loading="eager"
-        width="1254"
-        height="1254"
+    <div class="lc-hero__visual">
+      <video
+        data-lc-video
+        class="lc-hero__video"
+        muted
+        playsinline
+        preload="auto"
+        poster="{{ 'luna-clara-spline-fallback.png' | asset_url }}"
       >
+        <source src="{{ 'luna-clara-hero-video-optimized.mp4' | asset_url }}" type="video/mp4">
+      </video>
       <span class="lc-orbit lc-orbit--one"></span>
       <span class="lc-orbit lc-orbit--two"></span>
       <span class="lc-orbit lc-orbit--three"></span>
     </div>
   </div>
 
+  {% comment %} ---------- OCCASIONS MARQUEE ---------- {% endcomment %}
   <div class="lc-marquee" aria-label="Gift occasions">
     <div>
       {% for i in (1..2) %}
@@ -59,6 +62,7 @@
     </div>
   </div>
 
+  {% comment %} ---------- COLLECTIONS ---------- {% endcomment %}
   <div class="lc-section lc-section--collections">
     <div class="lc-section__heading">
       <p class="lc-eyebrow">Shop the mood</p>
@@ -66,24 +70,25 @@
       <p>Product-first, refined, and ready for gifting.</p>
     </div>
     <div class="lc-collection-grid">
-      <a class="lc-collection-card" href="/collections/all">
-        <img src="{{ 'earrings-pearl-starburst.jpg' | asset_url }}" alt="Starburst earrings">
+      <a class="lc-collection-card" href="{{ shop_url }}">
+        <img src="{{ 'earrings-pearl-starburst.jpg' | asset_url }}" alt="Starburst earrings" width="900" height="1125" loading="lazy">
         <span>The Jewelry Edit</span>
         <small>Delicate earrings, necklaces, bracelets, and rings.</small>
       </a>
-      <a class="lc-collection-card" href="/collections/all">
-        <img src="{{ 'luna-clara-jewelry-model.png' | asset_url }}" alt="Gift-ready Luna Clara jewelry styling">
+      <a class="lc-collection-card" href="{{ gift_url }}">
+        <img src="{{ 'hero-feature.jpg' | asset_url }}" alt="Gift-ready Luna Clara jewelry styling" width="900" height="1125" loading="lazy">
         <span>Gift Box Moments</span>
         <small>Curated pieces with a ready-to-give finish.</small>
       </a>
-      <a class="lc-collection-card" href="/collections/all">
-        <img src="{{ 'luna-clara-spline-fallback.png' | asset_url }}" alt="Celestial Luna Clara jewelry scene">
+      <a class="lc-collection-card" href="{{ gift_url }}">
+        <img src="{{ 'hero-banner.jpg' | asset_url }}" alt="Celestial Luna Clara jewelry scene" width="900" height="1125" loading="lazy">
         <span>Luxe Celebrations</span>
         <small>Elevated pieces for the occasions that matter.</small>
       </a>
     </div>
   </div>
 
+  {% comment %} ---------- GLOW PICKS (live products) ---------- {% endcomment %}
   <div class="lc-section lc-section--products">
     <div class="lc-section__heading lc-section__heading--split">
       <div>
@@ -99,7 +104,7 @@
           <a class="lc-product-card" href="{{ product.url }}">
             <div class="lc-product-card__image">
               {% if product.featured_image %}
-                {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title }}
+                {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '300, 600, 900', alt: product.title }}
               {% else %}
                 <div class="lc-product-card__placeholder">{{ product.title }}</div>
               {% endif %}
@@ -116,6 +121,59 @@
     {% endif %}
   </div>
 
+  {% comment %} ---------- BANNER ---------- {% endcomment %}
+  <div class="lc-banner" style="background-image: url('{{ 'hero-banner.jpg' | asset_url }}');">
+    <div class="lc-banner__overlay">
+      <p class="lc-banner__title">Curated to Gift. Designed to Glow.</p>
+      <a href="{{ shop_url }}" class="lc-button lc-button--light">Shop the Collection</a>
+    </div>
+  </div>
+
+  {% comment %} ---------- GIFT BOXES ---------- {% endcomment %}
+  <div class="lc-section lc-section--gifts">
+    <div class="lc-section__heading lc-section__heading--center">
+      <p class="lc-eyebrow">Gift-ready</p>
+      <h2>The Perfect Gift, Ready to Give</h2>
+      <p>Every Luna Clara gift box is beautifully presented and ready for the celebration.</p>
+    </div>
+    <div class="lc-gift-grid">
+      <div class="lc-gift-card">
+        <img src="{{ 'hero-feature.jpg' | asset_url }}" alt="Signature gift box" width="1200" height="675" loading="lazy">
+        <div class="lc-gift-card__body">
+          <h3>Signature Gift Box</h3>
+          <p>Two to three curated jewelry pieces with packaging and ribbon. Perfect for birthdays, Eid, and anniversaries.</p>
+          <p class="lc-gift-card__price">From $65</p>
+          <a href="{{ gift_url }}" class="lc-button lc-button--secondary">Shop this box</a>
+        </div>
+      </div>
+      <div class="lc-gift-card">
+        <img src="{{ 'hero-banner.jpg' | asset_url }}" alt="Luxury gift box" width="1200" height="675" loading="lazy">
+        <div class="lc-gift-card__body">
+          <h3>Luxury Gift Box</h3>
+          <p>Four to five jewelry pieces with premium packaging, ribbon, and a gift card option.</p>
+          <p class="lc-gift-card__price">From $110</p>
+          <a href="{{ gift_url }}" class="lc-button lc-button--secondary">Shop this box</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} ---------- OCCASION PILLS ---------- {% endcomment %}
+  <div class="lc-section lc-section--pills">
+    <h2>A Gift for Every Moment</h2>
+    <div class="lc-pills">
+      <span class="lc-pill">Birthday</span>
+      <span class="lc-pill">Anniversary</span>
+      <span class="lc-pill">Eid</span>
+      <span class="lc-pill">Mother's Day</span>
+      <span class="lc-pill">Valentine's Day</span>
+      <span class="lc-pill">Wedding</span>
+      <span class="lc-pill">Bridesmaids</span>
+      <span class="lc-pill">Just Because</span>
+    </div>
+  </div>
+
+  {% comment %} ---------- STORY (interactive focus) ---------- {% endcomment %}
   <div class="lc-story">
     <div class="lc-story__image" data-lc-focus>
       <img
@@ -136,6 +194,18 @@
         and the feeling of opening something chosen with care.
       </p>
       <p>Move across the image to focus earring, necklace, bracelet, then ring.</p>
+      <a href="{{ routes.search_url | append: '?q=about' | default: '/pages/about' }}" class="lc-story__link">Read Our Story</a>
+    </div>
+  </div>
+
+  {% comment %} ---------- CARE STRIP ---------- {% endcomment %}
+  <div class="lc-care">
+    <div class="lc-care__inner">
+      <div class="lc-care__msg">
+        <span class="lc-care__icon">*</span>
+        <p>Keep your Luna Clara pieces glowing longer with simple care rituals.</p>
+      </div>
+      <a href="/pages/jewelry-care" class="lc-button lc-button--secondary">Jewelry Care Guide</a>
     </div>
   </div>
 </section>
@@ -145,42 +215,81 @@
     const root = document.currentScript.closest('.shopify-section')?.querySelector('[data-lc-home]');
     if (!root) return;
 
-    root.querySelectorAll('[data-lc-tilt]').forEach((node) => {
-      node.addEventListener('pointermove', (event) => {
-        const rect = node.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - 0.5;
-        const y = (event.clientY - rect.top) / rect.height - 0.5;
-        node.style.setProperty('--tilt-x', `${(-y * 6).toFixed(2)}deg`);
-        node.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
-      });
-      node.addEventListener('pointerleave', () => {
-        node.style.setProperty('--tilt-x', '0deg');
-        node.style.setProperty('--tilt-y', '0deg');
-      });
-    });
+    /* Hero video — cursor-scrub on desktop, gentle autoplay on mobile (mirrors localhost) */
+    const video = root.querySelector('[data-lc-video]');
+    if (video) {
+      let prevY = null;
+      let target = 0;
+      let raf = 0;
+      let seeking = false;
+      const isDesktop = () => window.innerWidth >= 1024;
 
+      video.addEventListener('seeked', () => { seeking = false; });
+
+      const applyScrub = () => {
+        raf = 0;
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+        const clamped = Math.min(video.duration - 0.05, Math.max(0, target));
+        if (!seeking && Math.abs(clamped - video.currentTime) > 0.01) {
+          seeking = true;
+          video.currentTime = clamped;
+        }
+      };
+
+      const setup = () => {
+        if (isDesktop()) {
+          video.pause();
+        } else {
+          video.loop = true;
+          video.muted = true;
+          video.autoplay = true;
+          video.play().catch(() => {});
+        }
+      };
+
+      video.addEventListener('loadedmetadata', () => {
+        target = 0;
+        video.currentTime = 0;
+        setup();
+      });
+      if (video.readyState >= 1) setup();
+
+      window.addEventListener('mousemove', (event) => {
+        if (!isDesktop() || !Number.isFinite(video.duration) || video.duration <= 0) return;
+        if (prevY === null) { prevY = event.clientY; return; }
+        const dy = event.clientY - prevY;
+        prevY = event.clientY;
+        target += (dy / window.innerHeight) * 0.9 * video.duration;
+        target = Math.min(video.duration, Math.max(0, target));
+        if (!raf) raf = requestAnimationFrame(applyScrub);
+      });
+      window.addEventListener('resize', setup);
+    }
+
+    /* Story focus points */
     const focus = root.querySelector('[data-lc-focus]');
-    if (!focus) return;
-    const points = [
-      { label: 'Earring', x: 36, y: 28, origin: '34% 26%' },
-      { label: 'Necklace', x: 44, y: 60, origin: '45% 58%' },
-      { label: 'Bracelet', x: 86, y: 78, origin: '84% 78%' },
-      { label: 'Ring', x: 62, y: 54, origin: '62% 54%' }
-    ];
-    const label = focus.querySelector('.lc-focus-label');
-    const setPoint = (index) => {
-      const point = points[index];
-      focus.style.setProperty('--focus-x', `${point.x}%`);
-      focus.style.setProperty('--focus-y', `${point.y}%`);
-      focus.style.setProperty('--focus-origin', point.origin);
-      label.textContent = point.label;
-    };
-    setPoint(0);
-    focus.addEventListener('pointermove', (event) => {
-      const rect = focus.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      setPoint(Math.min(points.length - 1, Math.max(0, Math.floor(x * points.length))));
-    });
+    if (focus) {
+      const points = [
+        { label: 'Earring', x: 36, y: 28, origin: '34% 26%' },
+        { label: 'Necklace', x: 44, y: 60, origin: '45% 58%' },
+        { label: 'Bracelet', x: 86, y: 78, origin: '84% 78%' },
+        { label: 'Ring', x: 62, y: 54, origin: '62% 54%' }
+      ];
+      const label = focus.querySelector('.lc-focus-label');
+      const setPoint = (index) => {
+        const point = points[index];
+        focus.style.setProperty('--focus-x', `${point.x}%`);
+        focus.style.setProperty('--focus-y', `${point.y}%`);
+        focus.style.setProperty('--focus-origin', point.origin);
+        label.textContent = point.label;
+      };
+      setPoint(0);
+      focus.addEventListener('pointermove', (event) => {
+        const rect = focus.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        setPoint(Math.min(points.length - 1, Math.max(0, Math.floor(x * points.length))));
+      });
+    }
   })();
 </script>
 
@@ -233,15 +342,15 @@
   }
 
   .lc-hero h1 {
-    max-width: 11ch;
-    font-size: clamp(3.8rem, 8vw, 7.2rem);
+    max-width: 13ch;
+    font-size: clamp(3.2rem, 6.5vw, 5.6rem);
   }
 
   .lc-hero__tagline {
     margin: 18px 0 0;
     color: var(--lc-gold);
     font-family: var(--font-heading--family, Georgia, serif);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
     font-style: italic;
   }
 
@@ -297,6 +406,18 @@
     color: #fff;
   }
 
+  .lc-button--light {
+    background: rgba(255,255,255,0.92);
+    border-color: rgba(255,255,255,0.92);
+    color: var(--lc-charcoal);
+  }
+
+  .lc-button--light:hover {
+    background: var(--lc-gold);
+    border-color: var(--lc-gold);
+    color: #fff;
+  }
+
   .lc-proof {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -322,17 +443,18 @@
 
   .lc-hero__visual {
     position: relative;
-    aspect-ratio: 1;
-    transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-    transition: transform 220ms ease-out;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.18);
+    background: var(--lc-champagne);
+    box-shadow: 0 34px 80px rgba(201,168,76,0.18);
   }
 
-  .lc-hero__visual img {
+  .lc-hero__video {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 34px 42px rgba(201,168,76,0.16));
-    animation: lc-breathe 7s ease-in-out infinite;
+    object-fit: cover;
+    object-position: center;
   }
 
   .lc-orbit {
@@ -345,9 +467,9 @@
     animation: lc-drift 5.8s ease-in-out infinite;
   }
 
-  .lc-orbit--one { left: 18%; top: 28%; }
-  .lc-orbit--two { left: 78%; top: 22%; animation-delay: 700ms; }
-  .lc-orbit--three { left: 84%; top: 70%; animation-delay: 1100ms; }
+  .lc-orbit--one { left: 12%; top: 18%; }
+  .lc-orbit--two { left: 86%; top: 14%; animation-delay: 700ms; }
+  .lc-orbit--three { left: 90%; top: 78%; animation-delay: 1100ms; }
 
   .lc-marquee {
     overflow: hidden;
@@ -399,9 +521,15 @@
     gap: 24px;
   }
 
+  .lc-section__heading--center {
+    text-align: center;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
   .lc-section__heading h2,
   .lc-story h2 {
-    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
   }
 
   .lc-section__heading a {
@@ -491,6 +619,127 @@
     text-align: center;
   }
 
+  /* Banner */
+  .lc-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 420px;
+  }
+
+  .lc-banner__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    text-align: center;
+    background: rgba(44,44,44,0.28);
+  }
+
+  .lc-banner__title {
+    margin: 0;
+    color: #fff;
+    font-family: "Cinzel", var(--font-heading--family, Georgia, serif);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    text-shadow: 0 2px 18px rgba(0,0,0,0.35);
+  }
+
+  /* Gift boxes */
+  .lc-gift-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 980px;
+    margin-inline: auto;
+  }
+
+  .lc-gift-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    background: #fff;
+    overflow: hidden;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .lc-gift-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px rgba(201,168,76,0.16);
+  }
+
+  .lc-gift-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .lc-gift-card__body {
+    padding: 26px;
+  }
+
+  .lc-gift-card__body h3 {
+    margin: 0 0 10px;
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 1.7rem;
+    color: var(--lc-charcoal);
+  }
+
+  .lc-gift-card__body p {
+    margin: 0 0 12px;
+    color: var(--lc-gray);
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  .lc-gift-card__price {
+    color: var(--lc-gold) !important;
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 1.3rem;
+  }
+
+  /* Occasion pills */
+  .lc-section--pills {
+    text-align: center;
+    background: var(--lc-cream);
+  }
+
+  .lc-section--pills h2 {
+    font-family: "Cinzel", var(--font-heading--family, Georgia, serif);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 28px;
+  }
+
+  .lc-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .lc-pill {
+    border: 1px solid rgba(242,181,192,0.6);
+    background: rgba(242,181,192,0.2);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    color: var(--lc-charcoal);
+    transition: border-color 180ms ease, color 180ms ease;
+  }
+
+  .lc-pill:hover {
+    border-color: var(--lc-gold);
+    color: var(--lc-gold);
+  }
+
+  /* Story */
   .lc-story {
     display: grid;
     grid-template-columns: 1fr 0.85fr;
@@ -551,9 +800,60 @@
     transition: left 260ms ease, top 260ms ease;
   }
 
-  @keyframes lc-breathe {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
+  .lc-story__link {
+    display: inline-block;
+    margin-top: 8px;
+    border-bottom: 1px solid var(--lc-gold);
+    padding-bottom: 2px;
+    color: var(--lc-gold);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  /* Care strip */
+  .lc-care {
+    border-block: 1px solid rgba(201,168,76,0.14);
+    background: rgba(247,231,206,0.5);
+    padding: 40px 24px;
+  }
+
+  .lc-care__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    max-width: 820px;
+    margin-inline: auto;
+  }
+
+  .lc-care__msg {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lc-care__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: rgba(201,168,76,0.12);
+    color: var(--lc-gold);
+    font-size: 1.1rem;
+  }
+
+  .lc-care__msg p {
+    margin: 0;
+    color: var(--lc-charcoal);
+    font-size: 0.95rem;
   }
 
   @keyframes lc-drift {
@@ -577,13 +877,9 @@
       padding-top: 44px;
     }
 
-    .lc-hero h1 {
-      font-size: clamp(3.2rem, 15vw, 5rem);
-    }
-
     .lc-proof,
     .lc-collection-grid,
-    .lc-product-grid {
+    .lc-gift-grid {
       grid-template-columns: 1fr;
     }
 
@@ -593,6 +889,15 @@
 
     .lc-section__heading--split {
       align-items: start;
+      flex-direction: column;
+    }
+
+    .lc-care__inner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .lc-care__msg {
       flex-direction: column;
     }
   }
