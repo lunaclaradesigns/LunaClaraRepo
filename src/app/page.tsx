@@ -4,6 +4,8 @@ import BannerImage from "@/components/BannerImage";
 import AddToCartButton from "@/components/AddToCartButton";
 import LunaClaraHybridHero from "@/components/LunaClaraHybridHero";
 import { getFeaturedProducts } from "@/data/products";
+import CursorTilt from "@/components/CursorTilt";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const OCCASIONS = [
   "Birthday",
@@ -74,35 +76,31 @@ export default function HomePage() {
 
       <section className="bg-cream px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 flex flex-col gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
-            <div>
-              <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Shop the mood</p>
-              <h2 className="font-display text-4xl text-charcoal md:text-5xl">Jewelry for the moment</h2>
+          <ScrollReveal>
+            <div className="mb-12 flex flex-col gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left">
+              <div>
+                <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Shop the mood</p>
+                <h2 className="font-display text-5xl text-charcoal md:text-6xl">Jewelry for the moment</h2>
+              </div>
+              <p className="mx-auto max-w-md font-body text-sm leading-relaxed text-soft-gray md:mx-0">
+                Inspired by boutique jewelry houses: product-first, refined, and ready for gifting.
+              </p>
             </div>
-            <p className="mx-auto max-w-md font-body text-sm leading-relaxed text-soft-gray md:mx-0">
-              Inspired by boutique jewelry houses: product-first, refined, and ready for gifting.
-            </p>
-          </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {COLLECTIONS.map((col) => (
-              <Link key={col.href} href={col.href} className="group block card-hover">
-                <div className="overflow-hidden border border-gold/10 bg-warm-white transition-colors group-hover:border-gold/35">
-                  <ProductImage
-                    src={col.image}
-                    alt={col.title}
-                    aspectRatio="4/5"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="p-5">
-                    <h3 className="mb-2 font-heading text-2xl text-charcoal">{col.title}</h3>
-                    <p className="mb-4 font-body text-sm leading-relaxed text-soft-gray">{col.desc}</p>
-                    <span className="font-body text-xs uppercase tracking-widest text-gold transition-colors group-hover:text-gold-light">
-                      Shop now
-                    </span>
+              <CursorTilt glow key={col.href} className="h-full">
+                <Link href={col.href} className="group block h-full">
+                  <div className="relative overflow-hidden border border-gold/10 bg-warm-white">
+                    <ProductImage src={col.image} alt={col.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-charcoal/55 to-transparent p-6">
+                      <h3 className="font-display text-3xl text-warm-white">{col.title}</h3>
+                      <span className="mt-2 inline-block font-body text-xs uppercase tracking-widest text-warm-white/85">Shop now →</span>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </CursorTilt>
             ))}
           </div>
         </div>
@@ -110,43 +108,47 @@ export default function HomePage() {
 
       <section className="bg-champagne/40 px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
-            <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Handpicked for you</p>
-            <h2 className="font-display text-4xl text-charcoal md:text-5xl">Glow Picks</h2>
-          </div>
+          <ScrollReveal>
+            <div className="mb-12 text-center">
+              <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Handpicked for you</p>
+              <h2 className="font-display text-5xl text-charcoal md:text-6xl">Glow Picks</h2>
+            </div>
+          </ScrollReveal>
           <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
             {featured.map((product) => (
-              <div key={product.id} className="group card-hover">
-                <Link href={`/products/${product.slug}`}>
-                  <div className="overflow-hidden border border-gold/10 transition-colors group-hover:border-gold/30">
-                    <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
-                  </div>
-                </Link>
-                <div className="pb-4 pt-3">
+              <CursorTilt glow key={product.id}>
+                <div className="group card-hover">
                   <Link href={`/products/${product.slug}`}>
-                    <h3 className="mb-1 font-body text-sm leading-snug text-charcoal transition-colors hover:text-gold md:text-base">
-                      {product.title}
-                    </h3>
+                    <div className="overflow-hidden border border-gold/10 transition-colors group-hover:border-gold/30">
+                      <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
+                    </div>
                   </Link>
-                  <div className="mb-3 flex items-baseline gap-2">
-                    <p className="font-body text-sm text-gold">${product.price.toFixed(2)}</p>
-                    {product.compareAtPrice && (
-                      <p className="font-body text-xs text-soft-gray line-through">
-                        ${product.compareAtPrice.toFixed(2)}
-                      </p>
-                    )}
+                  <div className="pb-4 pt-3">
+                    <Link href={`/products/${product.slug}`}>
+                      <h3 className="mb-1 font-body text-sm leading-snug text-charcoal transition-colors hover:text-gold md:text-base">
+                        {product.title}
+                      </h3>
+                    </Link>
+                    <div className="mb-3 flex items-baseline gap-2">
+                      <p className="font-body text-sm text-gold">${product.price.toFixed(2)}</p>
+                      {product.compareAtPrice && (
+                        <p className="font-body text-xs text-soft-gray line-through">
+                          ${product.compareAtPrice.toFixed(2)}
+                        </p>
+                      )}
+                    </div>
+                    <AddToCartButton
+                      product={{
+                        id: product.id,
+                        title: product.title,
+                        price: product.price,
+                        imageUrl: product.image,
+                        category: product.category,
+                      }}
+                    />
                   </div>
-                  <AddToCartButton
-                    product={{
-                      id: product.id,
-                      title: product.title,
-                      price: product.price,
-                      imageUrl: product.image,
-                      category: product.category,
-                    }}
-                  />
                 </div>
-              </div>
+              </CursorTilt>
             ))}
           </div>
         </div>
@@ -172,13 +174,15 @@ export default function HomePage() {
 
       <section className="bg-champagne px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
-            <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Gift-ready</p>
-            <h2 className="font-display text-4xl text-charcoal md:text-5xl">The Perfect Gift, Ready to Give</h2>
-            <p className="mx-auto mt-3 max-w-lg font-body leading-relaxed text-soft-gray">
-              Every Luna Clara gift box is beautifully presented and ready for the celebration.
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="mb-12 text-center">
+              <p className="mb-3 font-body text-xs uppercase tracking-[0.25em] text-gold">Gift-ready</p>
+              <h2 className="font-display text-5xl text-charcoal md:text-6xl">The Perfect Gift, Ready to Give</h2>
+              <p className="mx-auto mt-3 max-w-lg font-body leading-relaxed text-soft-gray">
+                Every Luna Clara gift box is beautifully presented and ready for the celebration.
+              </p>
+            </div>
+          </ScrollReveal>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
             {[
               {
@@ -196,25 +200,27 @@ export default function HomePage() {
                 image: "/products/hero-banner.jpg",
               },
             ].map((box) => (
-              <div key={box.href} className="group card-hover border border-gold/20 bg-warm-white">
-                <ProductImage
-                  src={box.image}
-                  alt={box.title}
-                  aspectRatio="16/9"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="p-6">
-                  <h3 className="mb-2 font-heading text-2xl text-charcoal">{box.title}</h3>
-                  <p className="mb-3 font-body text-sm leading-relaxed text-soft-gray">{box.desc}</p>
-                  <p className="mb-4 font-heading text-xl text-gold">{box.price}</p>
-                  <Link
-                    href={box.href}
-                    className="inline-block border border-gold px-6 py-3 font-body text-xs uppercase tracking-widest text-gold transition-colors hover:bg-gold hover:text-warm-white"
-                  >
-                    Shop this box
-                  </Link>
+              <CursorTilt glow key={box.href}>
+                <div className="group card-hover border border-gold/20 bg-warm-white">
+                  <ProductImage
+                    src={box.image}
+                    alt={box.title}
+                    aspectRatio="16/9"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="p-6">
+                    <h3 className="mb-2 font-heading text-2xl text-charcoal">{box.title}</h3>
+                    <p className="mb-3 font-body text-sm leading-relaxed text-soft-gray">{box.desc}</p>
+                    <p className="mb-4 font-heading text-xl text-gold">{box.price}</p>
+                    <Link
+                      href={box.href}
+                      className="inline-block border border-gold px-6 py-3 font-body text-xs uppercase tracking-widest text-gold transition-colors hover:bg-gold hover:text-warm-white"
+                    >
+                      Shop this box
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </CursorTilt>
             ))}
           </div>
         </div>
@@ -222,7 +228,9 @@ export default function HomePage() {
 
       <section className="bg-cream px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-8 font-display text-3xl text-charcoal md:text-4xl">A Gift for Every Moment</h2>
+          <ScrollReveal>
+            <h2 className="mb-8 font-display text-4xl text-charcoal md:text-5xl">A Gift for Every Moment</h2>
+          </ScrollReveal>
           <div className="flex flex-wrap justify-center gap-3">
             {OCCASIONS.map((occasion) => (
               <span
@@ -249,8 +257,10 @@ export default function HomePage() {
             </div>
           </div>
           <div className="order-1 flex flex-col gap-5 md:order-2">
-            <p className="font-body text-xs uppercase tracking-[0.25em] text-gold">Our Story</p>
-            <h2 className="font-display text-4xl text-charcoal md:text-5xl">More Than Jewelry</h2>
+            <ScrollReveal>
+              <p className="font-body text-xs uppercase tracking-[0.25em] text-gold">Our Story</p>
+              <h2 className="font-display text-5xl text-charcoal md:text-6xl">More Than Jewelry</h2>
+            </ScrollReveal>
             <p className="font-body leading-relaxed text-soft-gray">
               At Luna Clara, jewelry is part of the whole gesture: the piece, the packaging, the ribbon,
               and the feeling of opening something chosen with care.
