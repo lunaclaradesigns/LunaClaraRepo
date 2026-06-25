@@ -134,6 +134,29 @@ link, route, cart action, form, and checkout flow must remain functional.
   `NEXT_PUBLIC_SPLINE_SCENE_URL` (Next.js) and the `<spline-viewer>` url (Shopify).
   A scene brief will be provided; until then the video hero is shown.
 
+## 7a. Deployment constraints
+
+The redesign must deploy and run correctly on **both** production targets:
+
+- **Vercel (Next.js app):**
+  - `next build` must pass clean (no type/lint/build errors); production build is what
+    Vercel runs.
+  - Fonts via `next/font/google` (self-hosted at build, no runtime FOUT/blocking).
+  - Spline viewer loaded client-side only (`"use client"`, `next/script`), so SSR/build
+    never touches `window`; video + WebGL guarded for server rendering.
+  - `ad-3.mp4` served from `public/` (works on Vercel's static/CDN layer).
+  - Any new env var (`NEXT_PUBLIC_SPLINE_SCENE_URL`) is optional with a safe default so a
+    missing value never breaks the build or runtime.
+  - `next.config.ts` image/remote settings updated if any new external asset host is used.
+
+- **Shopify store (Tinker theme):**
+  - Changes must pass `shopify theme check` for touched files and render in the theme
+    editor without Liquid errors.
+  - WebGL/fonts loaded via CDN tags allowed by Shopify; assets referenced through
+    `asset_url`; `ad-3.mp4` placed in `assets/`.
+  - No reliance on Next-only APIs; cursor-depth JS is vanilla and scoped to the section.
+  - Existing section schema/settings preserved so the live theme keeps working.
+
 ## 8. Success criteria
 
 - Both surfaces visually match the agreed Celestique-grade language (type, spacing,
@@ -145,6 +168,8 @@ link, route, cart action, form, and checkout flow must remain functional.
   checkout. No regressions in existing behavior.
 - No console errors; Next.js builds clean; Shopify theme passes `shopify theme check`
   for touched files.
+- **Deploys cleanly to Vercel** (`next build` passes, runs in production) **and to the
+  Shopify store** (theme pushes/renders without Liquid or editor errors).
 
 ## 9. Risks
 
