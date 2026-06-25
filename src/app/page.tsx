@@ -2,7 +2,7 @@ import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import BannerImage from "@/components/BannerImage";
 import AddToCartButton from "@/components/AddToCartButton";
-import LunaClaraMotionHero from "@/components/LunaClaraMotionHero";
+import LunaClaraHybridHero from "@/components/LunaClaraHybridHero";
 import { getFeaturedProducts } from "@/data/products";
 
 const OCCASIONS = [
@@ -53,7 +53,7 @@ export default function HomePage() {
 
   return (
     <>
-      <LunaClaraMotionHero />
+      <LunaClaraHybridHero />
 
       <section className="overflow-hidden bg-charcoal py-3">
         <div className="flex whitespace-nowrap">
