@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Playfair_Display, DM_Sans, Cinzel } from "next/font/google";
+import { Cormorant_Garamond, Jost, Playfair_Display, DM_Sans, Cinzel } from "next/font/google";
 import "./globals.css";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
@@ -12,6 +12,12 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "600"],
   style: ["normal", "italic"],
+});
+
+const jost = Jost({
+  variable: "--font-jost",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
 const playfair = Playfair_Display({
@@ -46,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${playfair.variable} ${dmSans.variable} ${cinzel.variable}`}
+      className={`${cormorant.variable} ${jost.variable} ${playfair.variable} ${dmSans.variable} ${cinzel.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal">
         <CartProvider>
