@@ -44,9 +44,9 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-warm-white border-b border-gold/20 shadow-sm">
+    <header className="sticky top-0 z-50 bg-cream/95 backdrop-blur border-b border-gold/15">
       <nav ref={navRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between md:h-[72px]">
+        <div className="flex h-16 items-center justify-between md:h-20">
 
           {/* Logo */}
           <Link href="/" className="flex flex-shrink-0 items-center gap-3" aria-label="Luna Clara Designs home">
@@ -60,7 +60,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-body tracking-wide">
+          <div className="hidden md:flex items-center gap-9 font-body text-xs uppercase tracking-[0.18em]">
 
             {/* Shop dropdown */}
             <div
@@ -87,7 +87,7 @@ export default function Navbar() {
                 </svg>
               </button>
               {shopOpen && (
-                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
+                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/15 shadow-lg rounded-sm py-2 z-50">
                   <Link href="/collections/individual" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     Luna Finds
                   </Link>
@@ -123,7 +123,7 @@ export default function Navbar() {
                 </svg>
               </button>
               {giftOpen && (
-                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/20 shadow-lg rounded-sm py-2 z-50">
+                <div role="menu" className="absolute top-full left-0 w-48 bg-warm-white border border-gold/15 shadow-lg rounded-sm py-2 z-50">
                   <Link href="/collections/medium-box" onClick={closeDesktopMenus} className="block px-4 py-2.5 text-sm text-charcoal hover:text-gold hover:bg-cream transition-colors">
                     Signature Gift Box
                   </Link>
@@ -181,7 +181,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Slide-in */}
         {menuOpen && (
-          <div className="md:hidden absolute top-full right-0 w-72 bg-warm-white border-l border-b border-gold/20 shadow-xl z-50 py-6 px-6 flex flex-col gap-1">
+          <div className="md:hidden absolute top-full right-0 w-72 bg-warm-white border-l border-b border-gold/15 shadow-xl z-50 py-6 px-6 flex flex-col gap-1">
             <p className="text-xs uppercase tracking-widest text-soft-gray mb-3 font-body">Shop</p>
             <Link href="/collections/individual" onClick={() => setMenuOpen(false)}
               className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
@@ -196,7 +196,7 @@ export default function Navbar() {
               className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
               Luxury Gift Box
             </Link>
-            <div className="border-t border-gold/20 mt-4 pt-4 flex flex-col gap-1">
+            <div className="border-t border-gold/15 mt-4 pt-4 flex flex-col gap-1">
               <Link href="/about" onClick={() => setMenuOpen(false)}
                 className="py-2.5 text-base text-charcoal hover:text-gold transition-colors font-body">
                 About
