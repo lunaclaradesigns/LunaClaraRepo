@@ -8,7 +8,7 @@ export default function ContactPage() {
     <>
       <div className="bg-charcoal py-20 px-4 text-center">
         <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Get in Touch</p>
-        <h1 className="font-heading text-5xl md:text-6xl text-warm-white mb-4">
+        <h1 className="font-display text-5xl md:text-6xl text-warm-white mb-4">
           We&apos;d Love to Hear From You
         </h1>
         <p className="font-body text-white/60 max-w-md mx-auto">
@@ -22,7 +22,7 @@ export default function ContactPage() {
           {/* Contact details */}
           <div className="flex flex-col gap-8">
             <div>
-              <h2 className="font-heading text-3xl text-charcoal mb-6">Contact Details</h2>
+              <h2 className="font-display text-3xl text-charcoal mb-6">Contact Details</h2>
               <div className="flex flex-col gap-5">
                 <a href="mailto:sales@lunaclaradesigns.com"
                   className="flex items-center gap-4 group">
@@ -79,7 +79,7 @@ export default function ContactPage() {
 
           {/* Contact form */}
           <div>
-            <h2 className="font-heading text-3xl text-charcoal mb-6">Send a Message</h2>
+            <h2 className="font-display text-3xl text-charcoal mb-6">Send a Message</h2>
             <form
               action="https://formspree.io/f/placeholder"
               method="POST"

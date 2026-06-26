@@ -8,7 +8,7 @@ export default function ShippingReturnsPage() {
     <>
       <div className="bg-champagne py-20 px-4 text-center border-b border-gold/10">
         <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Policies</p>
-        <h1 className="font-heading text-5xl md:text-6xl text-charcoal">Shipping, Pickup & Returns</h1>
+        <h1 className="font-display text-5xl md:text-6xl text-charcoal">Shipping, Pickup & Returns</h1>
       </div>
 
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream">
@@ -18,7 +18,7 @@ export default function ShippingReturnsPage() {
           <div>
             <div className="flex items-center gap-3 mb-5">
               <span className="text-2xl">📦</span>
-              <h2 className="font-heading text-3xl text-charcoal">Shipping</h2>
+              <h2 className="font-display text-3xl text-charcoal">Shipping</h2>
             </div>
             <div className="font-body text-soft-gray leading-8 flex flex-col gap-3">
               <p>
@@ -38,7 +38,7 @@ export default function ShippingReturnsPage() {
           <div className="border-t border-gold/10 pt-10">
             <div className="flex items-center gap-3 mb-5">
               <span className="text-2xl">📍</span>
-              <h2 className="font-heading text-3xl text-charcoal">Local Pickup or Delivery</h2>
+              <h2 className="font-display text-3xl text-charcoal">Local Pickup or Delivery</h2>
             </div>
             <p className="font-body text-soft-gray leading-8">
               Local pickup or local delivery may be available depending on location and order type. Please contact
@@ -50,7 +50,7 @@ export default function ShippingReturnsPage() {
           <div className="border-t border-gold/10 pt-10">
             <div className="flex items-center gap-3 mb-5">
               <span className="text-2xl">🔄</span>
-              <h2 className="font-heading text-3xl text-charcoal">Returns & Exchanges</h2>
+              <h2 className="font-display text-3xl text-charcoal">Returns & Exchanges</h2>
             </div>
             <div className="font-body text-soft-gray leading-8 flex flex-col gap-3">
               <p>
@@ -66,7 +66,7 @@ export default function ShippingReturnsPage() {
             </div>
 
             <div className="mt-6 p-6 bg-blush/10 border border-blush/30">
-              <p className="font-heading text-lg text-charcoal mb-3">Returns are NOT accepted for:</p>
+              <p className="font-display text-3xl text-charcoal mb-3">Returns are NOT accepted for:</p>
               <ul className="font-body text-sm text-soft-gray flex flex-col gap-2">
                 {[
                   "Used or worn jewelry",

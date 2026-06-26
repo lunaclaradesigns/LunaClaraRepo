@@ -78,7 +78,7 @@ export default function AboutPage() {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/10 font-heading text-lg text-gold">
                 {v.icon}
               </div>
-              <h3 className="font-heading text-xl text-charcoal">{v.title}</h3>
+              <h3 className="font-display text-3xl text-charcoal">{v.title}</h3>
               <p className="font-body text-sm leading-relaxed text-soft-gray">{v.desc}</p>
             </div>
           ))}
@@ -86,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-champagne px-4 py-16 text-center">
-        <h2 className="mb-4 font-heading text-3xl text-charcoal">Ready to find the perfect piece?</h2>
+        <h2 className="mb-4 font-display text-3xl text-charcoal">Ready to find the perfect piece?</h2>
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           <Link
             href="/collections/individual"
