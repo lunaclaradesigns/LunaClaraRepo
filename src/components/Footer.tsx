@@ -5,10 +5,15 @@ import PaymentMethods from "@/components/PaymentMethods";
 export default function Footer() {
   return (
     <footer className="bg-charcoal text-warm-white">
+      {/* Giant wordmark band */}
+      <div className="overflow-hidden border-b border-white/10 px-2 pt-12 pb-4">
+        <p className="lc-footer-wordmark text-gold/90">LUNA CLARA</p>
+      </div>
+
       {/* Contact / Social strip */}
       <div className="border-b border-white/10 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-gold mb-3">
+          <h2 className="font-display text-4xl md:text-5xl text-gold mb-3">
             We&apos;d love to hear from you
           </h2>
           <p className="font-body text-white/60 mb-6 text-sm">
