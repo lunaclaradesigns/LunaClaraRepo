@@ -1,5 +1,6 @@
 import ProductImage from "@/components/ProductImage";
 import AddToCartButton from "@/components/AddToCartButton";
+import CursorTilt from "@/components/CursorTilt";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug, PRODUCTS } from "@/data/products";
@@ -40,9 +41,11 @@ export default async function ProductPage({ params }: Props) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Images */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 lg:sticky lg:top-24">
           <div className="border border-gold/10 overflow-hidden">
-            <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" priority sizes="(max-width: 768px) 100vw, 50vw" />
+            <CursorTilt>
+              <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" priority sizes="(max-width: 768px) 100vw, 50vw" />
+            </CursorTilt>
           </div>
           {gallery.length > 1 && (
             <div className="grid grid-cols-4 gap-2">
@@ -58,8 +61,8 @@ export default async function ProductPage({ params }: Props) {
         {/* Details */}
         <div className="flex flex-col gap-5 md:pt-4">
           <div>
-            <p className="font-body text-xs uppercase tracking-widest text-gold mb-2">Luna Clara Designs</p>
-            <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-3">{product.title}</h1>
+            <p className="font-body text-xs uppercase tracking-[0.22em] text-gold mb-2">Luna Clara Designs</p>
+            <h1 className="font-display text-5xl md:text-6xl text-charcoal mb-3">{product.title}</h1>
             <div className="flex items-baseline gap-3">
               <p className="font-heading text-3xl text-gold">${product.price.toFixed(2)}</p>
               {product.compareAtPrice && (
