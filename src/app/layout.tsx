@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost, Playfair_Display, DM_Sans, Cinzel } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
@@ -20,24 +20,6 @@ const jost = Jost({
   weight: ["300", "400", "500", "600"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  style: ["normal", "italic"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   title: "Luna Clara Designs — Made to Glow With You",
@@ -52,9 +34,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${jost.variable} ${playfair.variable} ${dmSans.variable} ${cinzel.variable}`}
+      className={`${cormorant.variable} ${jost.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-cream text-charcoal">
+        <noscript>
+          <style>{`.lc-reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
         <CartProvider>
           <AnnouncementBar />
           <Navbar />

@@ -32,25 +32,27 @@ export default function IndividualPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {products.map((product) => (
-              <CursorTilt glow key={product.id} className="group card-hover">
-                <Link href={`/products/${product.slug}`}>
-                  <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
-                    <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
-                  </div>
-                </Link>
-                <div className="pt-3 pb-4">
+              <CursorTilt glow key={product.id}>
+                <div className="group card-hover">
                   <Link href={`/products/${product.slug}`}>
-                    <h3 className="font-body text-sm md:text-base text-charcoal mb-1 hover:text-gold transition-colors leading-snug">
-                      {product.title}
-                    </h3>
+                    <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
+                      <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
+                    </div>
                   </Link>
-                  <div className="flex items-baseline gap-2 mb-3">
-                    <p className="font-body text-gold text-sm">${product.price.toFixed(2)}</p>
-                    {product.compareAtPrice && (
-                      <p className="font-body text-soft-gray text-xs line-through">${product.compareAtPrice.toFixed(2)}</p>
-                    )}
+                  <div className="pt-3 pb-4">
+                    <Link href={`/products/${product.slug}`}>
+                      <h3 className="font-body text-sm md:text-base text-charcoal mb-1 hover:text-gold transition-colors leading-snug">
+                        {product.title}
+                      </h3>
+                    </Link>
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <p className="font-body text-gold text-sm">${product.price.toFixed(2)}</p>
+                      {product.compareAtPrice && (
+                        <p className="font-body text-soft-gray text-xs line-through">${product.compareAtPrice.toFixed(2)}</p>
+                      )}
+                    </div>
+                    <AddToCartButton product={{ id: product.id, title: product.title, price: product.price, imageUrl: product.image, category: product.category }} />
                   </div>
-                  <AddToCartButton product={{ id: product.id, title: product.title, price: product.price, imageUrl: product.image, category: product.category }} />
                 </div>
               </CursorTilt>
             ))}

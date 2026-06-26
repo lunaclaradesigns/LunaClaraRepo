@@ -30,17 +30,19 @@ export default function MediumBoxPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {boxes.map((box) => (
-              <CursorTilt glow key={box.id} className="group card-hover bg-warm-white border border-gold/10">
-                <Link href={`/products/${box.slug}`}>
-                  <ProductImage src={box.image} alt={box.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
-                </Link>
-                <div className="p-5">
+              <CursorTilt glow key={box.id}>
+                <div className="group card-hover bg-warm-white border border-gold/10">
                   <Link href={`/products/${box.slug}`}>
-                    <h3 className="font-heading text-xl text-charcoal mb-2 hover:text-gold transition-colors">{box.title}</h3>
+                    <ProductImage src={box.image} alt={box.title} aspectRatio="4/5" sizes="(max-width: 768px) 100vw, 33vw" />
                   </Link>
-                  <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.description}</p>
-                  <p className="font-body text-gold text-base mb-4">${box.price.toFixed(2)}</p>
-                  <AddToCartButton product={{ id: box.id, title: box.title, price: box.price, imageUrl: box.image, category: box.category }} />
+                  <div className="p-5">
+                    <Link href={`/products/${box.slug}`}>
+                      <h3 className="font-heading text-xl text-charcoal mb-2 hover:text-gold transition-colors">{box.title}</h3>
+                    </Link>
+                    <p className="font-body text-sm text-soft-gray mb-3 leading-relaxed">{box.description}</p>
+                    <p className="font-body text-gold text-base mb-4">${box.price.toFixed(2)}</p>
+                    <AddToCartButton product={{ id: box.id, title: box.title, price: box.price, imageUrl: box.image, category: box.category }} />
+                  </div>
                 </div>
               </CursorTilt>
             ))}
