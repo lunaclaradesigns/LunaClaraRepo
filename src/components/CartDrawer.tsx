@@ -30,7 +30,7 @@ export default function CartDrawer() {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gold/20">
-          <h2 className="font-heading text-2xl text-charcoal">
+          <h2 className="font-display text-2xl text-charcoal">
             Your Cart
             {totalItems > 0 && (
               <span className="ml-2 font-body text-sm text-soft-gray">({totalItems} items)</span>
@@ -48,7 +48,7 @@ export default function CartDrawer() {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4">
               <div className="text-5xl">🛍️</div>
-              <p className="font-heading text-xl text-charcoal">Your cart is empty</p>
+              <p className="font-display text-xl text-charcoal">Your cart is empty</p>
               <p className="font-body text-sm text-soft-gray">Add some beautiful pieces to get started.</p>
               <button
                 onClick={closeCart}
@@ -111,7 +111,7 @@ export default function CartDrawer() {
           <div className="border-t border-gold/20 px-6 py-5 flex flex-col gap-4">
             <div className="flex justify-between items-center">
               <span className="font-body text-sm text-soft-gray uppercase tracking-wider">Subtotal</span>
-              <span className="font-heading text-2xl text-charcoal">${totalPrice.toFixed(2)}</span>
+              <span className="font-display text-2xl text-charcoal">${totalPrice.toFixed(2)}</span>
             </div>
             <p className="font-body text-xs text-soft-gray">Shipping and taxes calculated at checkout.</p>
             <button

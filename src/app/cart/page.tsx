@@ -18,12 +18,12 @@ export default function CartPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-8">Your Cart</h1>
+      <h1 className="font-display text-4xl md:text-5xl text-charcoal mb-8">Your Cart</h1>
 
       {items.length === 0 ? (
         <div className="text-center py-24 flex flex-col items-center gap-4">
           <div className="text-6xl">🛍️</div>
-          <p className="font-heading text-2xl text-charcoal">Your cart is empty</p>
+          <p className="font-display text-2xl text-charcoal">Your cart is empty</p>
           <p className="font-body text-soft-gray">Add some beautiful pieces to get started.</p>
           <Link
             href="/collections/individual"
@@ -73,7 +73,7 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-champagne/40 border border-gold/20 p-6 sticky top-24">
-              <h2 className="font-heading text-2xl text-charcoal mb-5">Order Summary</h2>
+              <h2 className="font-display text-2xl text-charcoal mb-5">Order Summary</h2>
               <div className="flex flex-col gap-3 font-body text-sm">
                 <div className="flex justify-between text-soft-gray">
                   <span>Subtotal ({totalItems} items)</span>
@@ -84,8 +84,8 @@ export default function CartPage() {
                   <span>Calculated at checkout</span>
                 </div>
                 <div className="border-t border-gold/20 pt-3 mt-1 flex justify-between items-center">
-                  <span className="font-heading text-lg text-charcoal">Total</span>
-                  <span className="font-heading text-2xl text-gold">${totalPrice.toFixed(2)}</span>
+                  <span className="font-display text-lg text-charcoal">Total</span>
+                  <span className="font-display text-2xl text-gold">${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
               <button
