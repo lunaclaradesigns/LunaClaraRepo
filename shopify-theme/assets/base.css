@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap');
+
 * {
   box-sizing: border-box;
 }
@@ -10,11 +12,15 @@ body {
   margin: 0;
   min-height: 100svh;
   font-variation-settings: 'slnt' 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--lc-font-body);
   background-color: #FDF8F2;
 }
 
 :root {
+  /* ── Luna Clara Typography Tokens ── */
+  --lc-font-display: 'Cormorant Garamond', Georgia, serif;
+  --lc-font-body: 'Jost', system-ui, sans-serif;
+
   /* ── Luna Clara Brand Colors ── */
   --lc-gold:        #C9A84C;
   --lc-gold-light:  #E8C97A;
@@ -38,8 +44,8 @@ body {
 }
 
 /* ── Luna Clara Typography ── */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+h1, h2, h3, h4, h5, h6, .lc-display {
+  font-family: var(--lc-font-display);
   color: var(--lc-charcoal);
 }
 
@@ -50,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--lc-gold) !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--lc-font-body);
 }
 
 .button:not(.button-secondary, .button-unstyled):hover {
@@ -74,7 +80,7 @@ h1, h2, h3, h4, h5, h6 {
 .announcement-bar {
   background-color: var(--lc-champagne) !important;
   color: var(--lc-gold) !important;
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--lc-font-body);
   letter-spacing: 0.15em;
   font-size: 12px;
 }
