@@ -2,6 +2,8 @@ import Link from "next/link";
 import ProductImage from "@/components/ProductImage";
 import AddToCartButton from "@/components/AddToCartButton";
 import { getProductsByCategory } from "@/data/products";
+import CursorTilt from "@/components/CursorTilt";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata = {
   title: "Luna Finds — Luna Clara Designs",
@@ -15,12 +17,14 @@ export default function IndividualPage() {
     <>
       {/* Header */}
       <div className="bg-champagne py-16 px-4 text-center border-b border-gold/10">
-        <p className="font-body text-xs uppercase tracking-[0.25em] text-gold mb-3">Shop</p>
-        <h1 className="font-heading text-4xl md:text-5xl text-charcoal mb-4">Luna Finds</h1>
-        <p className="font-body text-soft-gray max-w-md mx-auto leading-relaxed">
-          Delicate earrings, necklaces, bracelets, and rings — each piece chosen for everyday elegance
-          and effortless gifting.
-        </p>
+        <ScrollReveal>
+          <p className="font-body text-xs uppercase tracking-[0.22em] text-gold mb-3">Shop</p>
+          <h1 className="font-display text-5xl md:text-6xl text-charcoal mb-4">Luna Finds</h1>
+          <p className="font-body text-soft-gray max-w-md mx-auto leading-relaxed">
+            Delicate earrings, necklaces, bracelets, and rings — each piece chosen for everyday elegance
+            and effortless gifting.
+          </p>
+        </ScrollReveal>
       </div>
 
       {/* Product Grid */}
@@ -28,7 +32,7 @@ export default function IndividualPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {products.map((product) => (
-              <div key={product.id} className="group card-hover">
+              <CursorTilt glow key={product.id} className="group card-hover">
                 <Link href={`/products/${product.slug}`}>
                   <div className="overflow-hidden border border-gold/10 group-hover:border-gold/30 transition-colors">
                     <ProductImage src={product.image} alt={product.title} aspectRatio="4/5" />
@@ -48,7 +52,7 @@ export default function IndividualPage() {
                   </div>
                   <AddToCartButton product={{ id: product.id, title: product.title, price: product.price, imageUrl: product.image, category: product.category }} />
                 </div>
-              </div>
+              </CursorTilt>
             ))}
           </div>
         </div>
