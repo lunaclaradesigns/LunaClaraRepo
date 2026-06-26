@@ -30,16 +30,23 @@
     </div>
 
     <div class="lc-hero__visual">
-      <video
-        data-lc-video
-        class="lc-hero__video"
-        muted
-        playsinline
-        preload="auto"
-        poster="{{ 'luna-clara-spline-fallback.png' | asset_url }}"
-      >
-        <source src="{{ 'luna-clara-hero-video-optimized.mp4' | asset_url }}" type="video/mp4">
-      </video>
+      {% if section.settings.spline_url != blank %}
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.57/build/spline-viewer.js"></script>
+        <spline-viewer url="{{ section.settings.spline_url }}" events-target="global" loading="lazy" aria-label="Luna Clara 3D scene" style="width:100%;height:100%;display:block;"></spline-viewer>
+      {% else %}
+        <video
+          data-lc-video
+          class="lc-hero__video"
+          muted
+          playsinline
+          autoplay
+          loop
+          preload="auto"
+          poster="{{ 'luna-clara-spline-fallback.png' | asset_url }}"
+        >
+          <source src="{{ 'ad-3.mp4' | asset_url }}" type="video/mp4">
+        </video>
+      {% endif %}
       <span class="lc-orbit lc-orbit--one"></span>
       <span class="lc-orbit lc-orbit--two"></span>
       <span class="lc-orbit lc-orbit--three"></span>
@@ -72,18 +79,24 @@
     <div class="lc-collection-grid">
       <a class="lc-collection-card" href="{{ shop_url }}">
         <img src="{{ 'earrings-pearl-starburst.jpg' | asset_url }}" alt="Starburst earrings" width="900" height="1125" loading="lazy">
-        <span>The Jewelry Edit</span>
-        <small>Delicate earrings, necklaces, bracelets, and rings.</small>
+        <div class="lc-collection-card__overlay">
+          <span>The Jewelry Edit</span>
+          <small>Delicate earrings, necklaces, bracelets, and rings.</small>
+        </div>
       </a>
       <a class="lc-collection-card" href="{{ gift_url }}">
         <img src="{{ 'hero-feature.jpg' | asset_url }}" alt="Gift-ready Luna Clara jewelry styling" width="900" height="1125" loading="lazy">
-        <span>Gift Box Moments</span>
-        <small>Curated pieces with a ready-to-give finish.</small>
+        <div class="lc-collection-card__overlay">
+          <span>Gift Box Moments</span>
+          <small>Curated pieces with a ready-to-give finish.</small>
+        </div>
       </a>
       <a class="lc-collection-card" href="{{ gift_url }}">
         <img src="{{ 'hero-banner.jpg' | asset_url }}" alt="Celestial Luna Clara jewelry scene" width="900" height="1125" loading="lazy">
-        <span>Luxe Celebrations</span>
-        <small>Elevated pieces for the occasions that matter.</small>
+        <div class="lc-collection-card__overlay">
+          <span>Luxe Celebrations</span>
+          <small>Elevated pieces for the occasions that matter.</small>
+        </div>
       </a>
     </div>
   </div>
@@ -290,6 +303,24 @@
         setPoint(Math.min(points.length - 1, Math.max(0, Math.floor(x * points.length))));
       });
     }
+
+    /* Cursor-depth tilt on cards (desktop + motion-allowed only) */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.querySelectorAll('.lc-collection-card, .lc-product-card, .lc-gift-card').forEach((card) => {
+        card.addEventListener('pointermove', (e) => {
+          if (window.innerWidth < 768) return;
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          card.style.setProperty('--lc-ry', `${((px - 0.5) * 10).toFixed(2)}deg`);
+          card.style.setProperty('--lc-rx', `${(-(py - 0.5) * 10).toFixed(2)}deg`);
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--lc-rx', '0deg');
+          card.style.setProperty('--lc-ry', '0deg');
+        });
+      });
+    }
   })();
 </script>
 
@@ -335,7 +366,7 @@
   .lc-story h2 {
     margin: 0;
     color: var(--lc-charcoal);
-    font-family: "Cinzel", var(--font-heading--family, Georgia, serif);
+    font-family: var(--lc-font-display), Georgia, serif;
     font-weight: 500;
     line-height: 1.04;
     letter-spacing: 0.03em;
@@ -529,7 +560,7 @@
 
   .lc-section__heading h2,
   .lc-story h2 {
-    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
   }
 
   .lc-section__heading a {
@@ -559,11 +590,13 @@
     color: var(--lc-charcoal);
     text-decoration: none;
     transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    --lc-rx: 0deg; --lc-ry: 0deg;
+    transform: perspective(1000px) rotateX(var(--lc-rx)) rotateY(var(--lc-ry));
+    transform-style: preserve-3d;
   }
 
   .lc-collection-card:hover,
   .lc-product-card:hover {
-    transform: translateY(-4px);
     border-color: rgba(201,168,76,0.42);
     box-shadow: 0 18px 44px rgba(201,168,76,0.16);
   }
@@ -586,7 +619,36 @@
     text-align: center;
   }
 
-  .lc-collection-card span,
+  .lc-collection-card {
+    position: relative;
+  }
+
+  .lc-collection-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 48px 18px 18px;
+    background: linear-gradient(to top, rgba(44,44,44,0.55), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .lc-collection-card__overlay span {
+    display: block;
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 1.45rem;
+    color: #fff;
+  }
+
+  .lc-collection-card__overlay small {
+    display: block;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.45;
+    font-size: 0.86rem;
+  }
+
   .lc-product-card span {
     display: block;
     padding: 18px 18px 6px;
@@ -594,7 +656,6 @@
     font-size: 1.45rem;
   }
 
-  .lc-collection-card small,
   .lc-product-card small {
     display: block;
     padding: 0 18px 20px;
@@ -643,7 +704,7 @@
   .lc-banner__title {
     margin: 0;
     color: #fff;
-    font-family: "Cinzel", var(--font-heading--family, Georgia, serif);
+    font-family: var(--lc-font-display), Georgia, serif;
     font-weight: 500;
     letter-spacing: 0.03em;
     font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -663,11 +724,13 @@
     border: 1px solid rgba(201,168,76,0.2);
     background: #fff;
     overflow: hidden;
-    transition: transform 220ms ease, box-shadow 220ms ease;
+    transition: transform 180ms ease-out, box-shadow 220ms ease;
+    --lc-rx: 0deg; --lc-ry: 0deg;
+    transform: perspective(1000px) rotateX(var(--lc-rx)) rotateY(var(--lc-ry));
+    transform-style: preserve-3d;
   }
 
   .lc-gift-card:hover {
-    transform: translateY(-4px);
     box-shadow: 0 18px 44px rgba(201,168,76,0.16);
   }
 
@@ -709,7 +772,7 @@
   }
 
   .lc-section--pills h2 {
-    font-family: "Cinzel", var(--font-heading--family, Georgia, serif);
+    font-family: var(--lc-font-display), Georgia, serif;
     font-weight: 500;
     letter-spacing: 0.03em;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -901,6 +964,11 @@
       flex-direction: column;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lc-orbit, .lc-marquee div { animation: none !important; }
+    .lc-collection-card, .lc-product-card, .lc-gift-card { transition: none; transform: none; }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -933,6 +1001,11 @@
       "type": "url",
       "id": "secondary_link",
       "label": "Secondary button link"
+    },
+    {
+      "type": "url",
+      "id": "spline_url",
+      "label": "Spline 3D scene URL (optional)"
     }
   ],
   "presets": [
